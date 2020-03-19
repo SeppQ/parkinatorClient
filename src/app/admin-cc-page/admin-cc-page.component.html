@@ -1,0 +1,9 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+      <app-admin-cc-list (selectedCc)="setSelectedCc($event)"
+        class='col-6'></app-admin-cc-list>
+      <app-admin-cc-details [cc]="selectedCc"
+        class='col-6'></app-admin-cc-details>    
+    </div>
+</div>

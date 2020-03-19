@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="col d-flex justify-content-center pt-5">
+<div class="card mx-auto text-center pt-5" style="width: 18rem;">
+  <form (submit)='update($event)' value="up">
+    <div class="card-body">
+        <h5 class="card-title">Your Profile</h5>
+      </div>
+    <img class="card-img-top" src="../../assets/nopicture.png" alt="ProfilePicture">
+    <div class={{messageClass}} *ngIf='message'>{{messageText}}</div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Name : <span *ngIf='details'> {{user.user_fullname}}</span><input class="form-control" *ngIf='input' [(ngModel)]="fullname" name="fullname" placeholder="{{user.user_fullname}}"></li>
+      <li class="list-group-item">User : {{user.user_type}}</li>
+      <li class="list-group-item">Email : {{user.email}}</li>
+      <li class="list-group-item">Recovery Question : {{user.question}}</li>
+      <li class="list-group-item">Recovery Answer : {{user.answer_hash}}</li>
+      <li class="list-group-item">Disabled : {{user.has_disabled_badge}}</li>
+    </ul>
+    <div class="card-body">
+      <button type="submit" value="submit" class="btn btn-primary">{{buttonName}}</button>
+    </div>
+  </form>
+  </div>
+</div>
+<div>

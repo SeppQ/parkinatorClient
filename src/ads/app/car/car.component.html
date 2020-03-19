@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header">
+        <h3>Cars</h3>
+        <input type="text" [(ngModel)]="searchCars" placeholder= "search car reg" class= "form-control ml-auto float-sm-right">
+        <input type="text" [(ngModel)]="searchDetails" placeholder= "search car details" class= "form-control ml-auto float-sm-right">
+    </div>
+    
+
+    <div class="card-body list-group">
+        <div *ngIf="errorMsg!=null">{{errorMsg}}</div>
+        <ul class="">
+            <div *ngIf="cars!=[]">
+                <ng-container *ngFor='let c of cars; let i = index; trackBy: trackByFn' >
+                    <li class='list-group-item list-group-item-action' 
+                        
+                        (click)='carSelected(c.car_id)' 
+                        [class.active]='i==c.car_id'> 
+                        
+                        {{c.car_reg}}
+                    </li>
+                </ng-container>
+            </div>
+        </ul>
+        <div class="card-footer">
+            <app-new-car></app-new-car>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="justify-content-md-center text-center pt-5">
+    <div class="row justify-content-center pt-5">
+        <form class="form-signin" *ngIf="first" (submit)="checkEmail($event)" #validation="ngForm">
+            <img class="mb-4 rounded-sm" src="../../assets/parkinator.png" alt="" width="144" height="144">
+            <h1 class="h3 mb-3 font-weight-normal">Enter Your register Email</h1><br>
+            <input class="form-control" type="email" email="true"  placeholder="Email" [(ngModel)] = "email" name="email" required #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                <div *ngIf="name.errors.required">
+                    Email is required.
+                </div>
+                <div *ngIf="name.errors.email">
+                    Must be an email.
+                </div>                
+            </div>      
+            <div *ngIf="badEmail" class="alert alert-danger">
+                <div *ngIf="badEmail">
+                    Email Does not Exist!!
+                </div>              
+            </div>                 
+            <br> 
+            <input [disabled]="!validation.valid" class="btn btn-lg btn-primary btn-block" type="submit" value="Check Email"><br>
+            <button class="btn btn-lg btn-primary btn-block" (click)="goBack($event)" type="submit">Go Back</button>
+            <p class="mt-5 mb-3 text-muted">© 2020 - Parkinator</p>
+        </form>
+        <form class="form-signin" *ngIf="recoveryHTML" (submit)="answerQuestion($event)" #validation="ngForm">
+            <img class="mb-4 rounded-sm" src="../../assets/parkinator.png" alt="" width="144" height="144">
+            <h1 class="h3 mb-3 font-weight-normal">Answer Your Question</h1><br>
+            <p>{{question}}</p>
+            <input class="form-control" type="password" placeholder="Question Answer" [(ngModel)] = "answer_hash" name="answer_hash" required #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                <div *ngIf="name.errors.required">
+                    Answer is required.
+                </div>
+                <div *ngIf="andValidator">
+                    Answer did not Match !
+                </div>                
+            </div>         
+            <br> 
+            <input [disabled]="!validation.valid" class="btn btn-lg btn-primary btn-block" type="submit" value="Recover Password"><br>
+            <button class="btn btn-lg btn-primary btn-block" (click)="goBack($event)" type="submit">Go Back</button>
+            <p class="mt-5 mb-3 text-muted">© 2020 - Parkinator</p>
+        </form>       
+
+    <form class="form-signin" *ngIf="newPasswordHTML" (submit)="updatePassword($event)" #validation="ngForm">
+        <img class="mb-4 rounded-sm" src="../../assets/parkinator.png" alt="" width="144" height="144">
+        <h1 class="h3 mb-3 font-weight-normal">Enter Your new Password</h1><br>
+        <input class="form-control" type="password" placeholder="New Password" [(ngModel)] = "newPassword"  name="newPassword" required #name0="ngModel">
+        <div *ngIf="name0.invalid && (name0.dirty || name0.touched)" class="alert alert-danger">
+            <div *ngIf="name0.errors.required">
+                Password is required.
+            </div>
+            <div *ngIf="name3.errors.pattern">
+                Must contain at least one  <br>
+                number and one uppercase<br>
+                and lowercase letter, <br>
+                and at least 7 or more characters<br>
+            </div>     
+            <div *ngIf="name3.errors.maxlength">
+                Max length 30 characters.
+            </div>                            
+        </div>  
+        <input class="form-control" type="password" appConfirmEqualValidator="newPassword" placeholder="Re-type Password" [(ngModel)] = "RePassword"  name="RePassword" required #name="ngModel">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">       
+            <div *ngIf="name.errors.required">
+                Password is required.
+            </div>  
+            <div *ngIf="name.errors.notEqual">               
+                Password Must Match !
+            </div>                              
+        </div>         
+        <br> 
+        <input [disabled]="!validation.valid" class="btn btn-lg btn-primary btn-block" type="submit" value="Change Password"><br>
+        <button class="btn btn-lg btn-primary btn-block" (click)="goBack($event)" type="submit">Go Back</button>
+        <p class="mt-5 mb-3 text-muted">© 2020 - Parkinator</p>
+    </form>           
+    </div>
+</div>
+
+

@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="card " style="width: 18rem;">
+        <div class="card-header">
+            <form class="form-signin" (submit)="addingLot($event)">
+                <h3>Register Car Park</h3>
+                <input type="text" [(ngModel)]="lotName" name="lotName" placeholder="Enter Lot Name"
+                    class="form-control ">
+                <br>
+                <button (click)="refresh()" class="btn btn-primary btn-block">Add</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div class="dropdown row justify-content-center">
+    <div class="card " style="width: 18rem;">
+        <div *ngFor="let lot of lots" class="card-header dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+
+            <h4>{{lot.parking_name}} </h4>
+            <form (submit)="removeLots(lot.lot_id)">
+                <button (click)="refresh()" class="btn btn-danger" type="submit"><i
+                        class="material-icons">delete</i></button>
+            </form>
+        </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="card " style="width: 18rem;">
+                <div class="card-header">
+                    <form class="form-signin" (submit)="addingZone(lot.lot_id)">
+                        <h3>Register Zone for Lot</h3>
+                        <input type="text" [(ngModel)]="zoneName" name="zoneName" placeholder="Enter Zone Name"
+                            class="form-control ">
+                        <input type="number" [(ngModel)]="maxSpaces" name="maxSpaces" placeholder="Enter Max Spaces"
+                            class="form-control ">
+                        <input type="bollean" [(ngModel)]="isVip" name="isVip" placeholder="is vip?"
+                            class="form-control ">
+                        <input type="number" [(ngModel)]="maxDisabledSpaces" name="maxDisabledSpaces"
+                            placeholder="max disables spaces" class="form-control ">
+                        <br>
+                        <button (click)="refresh()" class="btn btn-primary btn-block">Add</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

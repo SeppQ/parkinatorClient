@@ -1,0 +1,26 @@
+<app-header></app-header>
+<h3>User Management</h3>
+
+<table class="table table-striped">
+    <thead>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>User Type</th>
+        <th>Security Question</th>
+        <th>Has a Disability Badge</th>
+    </thead>
+    <tbody>
+        <ng-container *ngFor='let u of users' >
+            <tr>
+            <td>{{u.user_id}}</td>
+            <td>{{u.user_fullname}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.user_type}}</td>
+            <td>{{u.question}}</td>
+            <td>{{u.has_disabled_badge}}</td>
+            </tr>
+        </ng-container>
+    </tbody>
+    
+</table>

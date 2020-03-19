@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col"><h3>Clamping Company Details</h3></div>
+</div>
+
+<!-- Delete Car form -->
+<form (ngSubmit)="onSubmit2($event)" #detailsForm2="ngForm">   
+    <div class="form-group">
+        <div class="col">
+            <button class='btn-outline-dark form-control ' type="submit"[value] ="cc" (ngSubmit)="onSubmit2($event)">Remove Clamping Company</button>
+        </div>
+    </div>
+</form>
+
+<!-- Edit Car Form -->
+<form (ngSubmit)="onSubmit(detailsForm)" #detailsForm="ngForm">
+    <div class="form-group">
+        <label for="cc_id">Clamping Company ID:</label>
+        <input type="text" name="cc_id" ngModel class ="form-control"
+        [value] = "cc.cc_id"
+        [readonly]=true>
+    </div>
+
+    <div class="form-group">
+        <label for="cc_name">Clamping Company Name:</label>
+        <input type="text" name="cc_name" ngModel class ="form-control"
+        [value] = "cc.cc_name"
+        [readonly]="notEditable">
+    </div>
+
+    <div class="col">
+        <button class='btn-outline-dark form-control' type="submit">{{buttonText}}</button>
+    </div>
+</form>
+
+
+
+
+
+

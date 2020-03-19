@@ -1,0 +1,9 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+      <app-admin-car-list (selectedCar)="setSelectedCar($event)"
+        class='col-6'></app-admin-car-list>
+      <app-admin-car-details [car]="selectedCar"
+        class='col-6'></app-admin-car-details>    
+    </div>
+</div>

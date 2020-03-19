@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col"><h3>Car Details</h3></div>
+</div>
+
+<!-- Delete Car form -->
+<form (ngSubmit)="onSubmit2($event)" #detailsForm2="ngForm">   
+    <div class="form-group">
+        <div class="col">
+            <button class='btn-outline-dark form-control ' type="submit"[value] ="car" (ngSubmit)="onSubmit2($event)">Remove Car</button>
+        </div>
+    </div>
+</form>
+
+<!-- Edit Car Form -->
+<form (ngSubmit)="onSubmit(detailsForm)" #detailsForm="ngForm">
+    <div class="form-group">
+        <label for="car_id">Car ID:</label>
+        <input type="text" name="car_id" ngModel class ="form-control"
+        [value] = "car.car_id"
+        [readonly]=true>
+    </div>
+    <div class="form-group">
+        <label for="car_reg">Car Registration:</label>
+        <input type="text" name="car_reg" ngModel class ="form-control"
+        [value] = "car.car_reg"
+        [readonly]="notEditable">
+    </div>
+    <div class="form-group">
+        <label for="car_details">Car Colour:</label>
+        <input type="text" name="car_colour" ngModel class ="form-control"
+        [value] = "car.car_colour"
+        [readonly]="notEditable">
+    </div>
+    <div class="form-group">
+        <label for="car_details">Car Make:</label>
+        <input type="text" name="car_make" ngModel class ="form-control"
+        [value] = "car.car_make"
+        [readonly]="notEditable">
+    </div>
+    <div class="form-group">
+        <label for="car_details">Car Model:</label>
+        <input type="text" name="car_model" ngModel class ="form-control"
+        [value] = "car.car_model"
+        [readonly]="notEditable">
+    </div>
+    <div class="form-group">
+        <label for="user_id">User ID</label>
+        <input type="text" name="user_id" ngModel class ="form-control"
+        [value] = "car.user_id"
+        [readonly]="true">
+    </div>
+    <div class="col">
+        <button class='btn-outline-dark form-control' type="submit">{{buttonText}}</button>
+    </div>
+</form>
+
+
+
+
+
+

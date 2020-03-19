@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header">
+        <h3>Clamping Companies</h3>
+        <input type="text" [(ngModel)]="searchCcs" placeholder= "search clamping company" class= "form-control ml-auto float-sm-right">
+    </div>
+    
+ 
+    <div class="card-body list-group">
+        <div *ngIf="errorMsg!=null">{{errorMsg}}</div>
+        <ul class="">
+            <div *ngIf="ccs!=[]">
+                <ng-container *ngFor='let cc of ccs; let i = index; trackBy: trackByFn' >
+                    <li class='list-group-item list-group-item-action' 
+                        
+                        (click)='ccSelected(cc.cc_id)' 
+                        [class.active]='i==cc.cc_id'> 
+                        
+                        {{cc.cc_name}}
+                    </li>
+                </ng-container>
+            </div>
+        </ul>
+        <div class="card-footer">
+            <app-admin-new-cc></app-admin-new-cc>
+        </div>
+    </div>
+</div>

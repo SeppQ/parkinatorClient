@@ -1,0 +1,70 @@
+<div class=" row justify-content-md-center text-center pt-5">
+    <form class="form-signin" (submit)="registerUser($event)" #validation="ngForm">
+        <img class="mb-4" src="../../assets/parkinator.png" alt="" width="144" height="144">
+        <h1 class="h3 mb-3 font-weight-normal">Enter Your Details</h1><br>
+        
+        <input placeholder="Full Name" id="fullname" type="text" name="fullanme" class="form-control" required minlength="4" [(ngModel)]="fullname"
+            #name0="ngModel">
+        <div *ngIf="name0.invalid && (name0.dirty || name0.touched)" class="alert alert-danger">
+            <div *ngIf="name0.errors.required">
+                Name is required.
+            </div>
+            <div *ngIf="name0.errors.minlength">
+                Name must be at least 4 characters long.
+            </div>
+        </div>
+        <br>
+        <input placeholder="Email" id="email" name="email" email="true" class="form-control" required [(ngModel)]="email" type="email"
+            #name2="ngModel">
+        <div *ngIf="name2.invalid && (name2.dirty || name2.touched)" class="alert alert-danger">
+            <div *ngIf="name2.errors.required">
+                Email is required.
+            </div>
+            <div *ngIf="name2.errors.email">
+                Must be an email.
+            </div>
+        </div>
+        <br>
+        <input  placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="hash" name="hash" maxlength="30" class="form-control" required [(ngModel)]="hash" type="password"
+            #name3="ngModel">
+        <div *ngIf="name3.invalid && (name3.dirty || name3.touched)" class="alert alert-danger">
+            <div *ngIf="name3.errors.required">
+                Password is required.
+            </div>
+            <div *ngIf="name3.errors.pattern">
+                Must contain at least one  <br>
+                number and one uppercase<br>
+                and lowercase letter, <br>
+                and at least 7 or more characters<br>
+            </div>     
+            <div *ngIf="name3.errors.maxlength">
+                Max length 30 characters.
+            </div>                    
+        </div>
+        <input class="form-control" type="hidden" value="regular" [(ngModel)]="type" name="type">
+        <br>
+        <select class="form-control" name="passQ" id="passQ" [(ngModel)]="passQ" >
+            <option *ngFor="let recoveryQuestion of recoveryQuestions"  value="{{recoveryQuestion}}" >{{recoveryQuestion}}</option>
+        </select>  
+        <br>
+        <input placeholder="Recovery answer" id="passA" name="passA"  class="form-control" required [(ngModel)]="passA" type="text"
+            #name5="ngModel">                
+
+        <div *ngIf="name5.invalid && (name5.dirty || name5.touched)" class="alert alert-danger">
+            <div *ngIf="name5.errors.required">
+                Answer is required.
+            </div>
+        </div> 
+        <br>
+        <input [disabled]="!validation.valid" class="btn btn-lg btn-primary btn-block" type="submit" value="Sign up"><br>
+    </form>
+
+</div>
+<div class=" row justify-content-md-center text-center">
+    <form class="form-signin" (submit)="goBack($event)">
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Back"><br>
+        <p class="mt-5 mb-3 text-muted">© 2020 - Parkinator</p>
+    </form>
+</div>
+
+

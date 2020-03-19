@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header">
+        <h3>Users</h3>
+        <input type="text" [(ngModel)]="searchUsers" placeholder= "search user's email" class= "form-control ml-auto float-sm-right">
+    </div>
+    
+ 
+    <div class="card-body list-group">
+        <div *ngIf="errorMsg!=null">{{errorMsg}}</div>
+        <ul class="">
+            <div *ngIf="users!=[]">
+                <ng-container *ngFor='let u of users; let i = index; trackBy: trackByFn' >
+                    <li class='list-group-item list-group-item-action' 
+                        
+                        (click)='userSelected(u.user_id)' 
+                        [class.active]='i==u.user_id'> 
+                        
+                        {{u.email}}
+                    </li>
+                </ng-container>
+            </div>
+        </ul>
+        <div class="card-footer">
+            <app-admin-new-user></app-admin-new-user>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div class=" card " style="width: 18em;">
+            <div class="card-header">
+                <h3>Your Bookings</h3>
+            </div >
+            <div *ngIf="parkedCars!=[]">
+                <div *ngFor="let parkedCar of parkedCars">
+                    {{parkedCar.zone_id}}
+                    {{parkedCar.car_id}}
+                    Booked from {{parkedCar.book_from}} To {{parkedCar.book_to}}
+                </div>
+                </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class=" row justify-content-center">
+            <div class=" card " style="width: 18em;">
+                <div class="card-header">
+                    <h3>Avaivable Car Parks</h3>
+                </div>
+                <div *ngFor="let lot of lots">
+                    <form (submit)="setLot(lot.lot_id)">
+                    <button class="btn btn-block btn-outline-dark card-header ">{{lot.parking_name}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm">
+            <div  *ngIf="zoneSets">
+                <div class=" card " style="width: 18em;">
+                    <div class="card-header">
+                        <h3>Add Your Booking</h3>
+                    </div>
+                        <div>
+                            <form (submit)="addBooking($event)" class="form-group form-control">
+                                <select class="form-control" [(ngModel)]="zoneNameId" name="zoneNameId">
+                                    <option *ngFor="let zone of zones"  > {{zone.zone_name}}</option>
+                                </select>
+                                <input type="date" [(ngModel)]="bookTo" name="bookTo" >
+                                <select class="form-control" [(ngModel)]="carRegId" name="carRegId">
+                                    <option *ngFor="let car of cars" > {{car.car_reg}}</option>
+                                </select>
+                                <button class="btn btn-primary">Add Bookings</button>
+                            </form>
+                        </div>
+                </div>
+            </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,34 @@
+<div class="justify-content-md-center text-center pt-5">
+    <div class="row justify-content-center pt-5">
+        <form class="form-signin" (submit)="loginUser($event)" #validation="ngForm">
+            <img class="mb-4 rounded-sm" src="../../assets/parkinator.png" alt="" width="144" height="144">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1><br>
+            <input class="form-control" type="email" email="true"  placeholder="Email" [(ngModel)] = "username" name="username" required #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                <div *ngIf="name.errors.required">
+                    Email is required.
+                </div>
+                <div *ngIf="name.errors.email">
+                    Must be an email.
+                </div>                
+            </div>          
+            <br>  
+            <input class="form-control" type="password"  placeholder="password" [(ngModel)] = "hash" name="hash" required #name0="ngModel">
+            <div *ngIf="name0.invalid && (name0.dirty || name0.touched)" class="alert alert-danger">
+                <div *ngIf="name0.errors.required">
+                    Password is required.
+                </div>
+            </div>     
+            <br>        
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" [(ngModel)]="checkbox" name="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <input [disabled]="!validation.valid" class="btn btn-lg btn-primary btn-block" type="submit" value="Log In"><br>
+            <a class="btn btn-lg btn-primary btn-block" routerLink="/register">Sign up</a>
+            <a class="btn btn-lg btn-primary btn-block" routerLink="/recovery" type="submit">Recover Password</a>
+            <p class="mt-5 mb-3 text-muted">© 2020 - Parkinator</p>
+        </form>
+    </div>
+</div>

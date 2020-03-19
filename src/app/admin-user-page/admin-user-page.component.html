@@ -1,0 +1,9 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+      <app-admin-user-list (selectedUser)="setSelectedUser($event)"
+        class='col-6'></app-admin-user-list>
+      <app-admin-user-details [user]="selectedUser"
+        class='col-6'></app-admin-user-details>    
+    </div>
+</div>

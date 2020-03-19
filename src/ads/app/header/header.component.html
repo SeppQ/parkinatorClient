@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+    <div class="container-fliud">
+        <a class="navbar-brand">Parkinator</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li><a routerLink="/home" class="nav-link">Home</a></li>
+                <div *ngIf="!isAdmin"><li><a routerLink="/car" class="nav-link">Car</a></li></div>
+                <div *ngIf="isAdmin"><li><a routerLink="/admin-users" class="nav-link">Manage Users</a></li></div>
+            </ul>
+            <div class="btn-group push-right">
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">account_circle</i>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu ">
+                  <a routerLink="/profile" class="dropdown-item nav-link">Profile</a>          
+                  <a (click)="logout()" href="/" class="dropdown-item nav-link">Log Out</a>         
+                </div>
+              </div>        
+        </div>
+    </div>
+</nav>
