@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit {
     this.zoneSets = true;
   }
   addBooking() {
-
+//HelLLLLo NIGERS
     this.zones.forEach(element => {
       
       if (element.zone_name == this.zoneNameId) {
