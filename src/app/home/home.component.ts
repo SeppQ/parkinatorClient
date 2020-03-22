@@ -33,11 +33,11 @@ export class HomeComponent implements OnInit {
   zoneNameId: string;
   carRegId: string;
   bookTo: string;
-  zoneId: number;
-  carId: number;
-  parkedCars: ParkedCars[] = [];
+  zoneId : number;
+  carId : number;
+  parkedCars : ParkedCars[]=[];
   ngOnInit() {
-
+    
     this.userDetails = <User>JSON.parse(sessionStorage.getItem('userDetail'));
 
     this.lotservice.getCarParkLots().subscribe(data => {
@@ -47,6 +47,12 @@ export class HomeComponent implements OnInit {
 
     });
 
+    this.zoneservice.getZones().subscribe(data => {
+
+      this.zones = data;
+
+
+    });
 
     this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
     this.cdservice.getUserCars(this.user.user_id).subscribe(data => {
@@ -61,29 +67,22 @@ export class HomeComponent implements OnInit {
         this.errorMsg = err.message
       });
 
-    this.user = new User(this.userDetails.user_id, "", "", "", "", "", "", false);
-    this.bookingsService.displayBookings(this.user).subscribe(data => {
-      this.parkedCars = data;
-      console.log(data);
+      this.user = new User(this.userDetails.user_id,"","","","","","",false);
+      this.bookingsService.displayBookings(this.user).subscribe(data =>{
+        this.parkedCars = data;
+        console.log(data);
 
-    });
+      });
 
   }
   setLot(id: number) {
     sessionStorage.setItem('lotIdHome', id.toString());
     this.zoneSets = true;
-    
-    this.zoneservice.getZones(id.toString()).subscribe(data => {
-
-      this.zones = data;
-
-
-    });
   }
   addBooking() {
-
+//HelLLLLo NIGERS
     this.zones.forEach(element => {
-
+      
       if (element.zone_name == this.zoneNameId) {
         this.zoneId = element.zone_id;
       }
@@ -96,12 +95,12 @@ export class HomeComponent implements OnInit {
 
 
     event.preventDefault;
-    this.pc = (new ParkedCars(this.zoneId, this.carId, this.bookTo, this.bookTo, this.userDetails.user_id));
+    this.pc = (new ParkedCars(this.zoneId,this.carId, this.bookTo, this.bookTo,this.userDetails.user_id));
     this.bookingsService.addBooking(this.pc).subscribe(data => {
       this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
       window.alert(this.msg.statusCode + "  " + this.msg.message);
     })
   }
 
-
+  
 }
