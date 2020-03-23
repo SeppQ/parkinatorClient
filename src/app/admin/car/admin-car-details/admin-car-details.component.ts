@@ -1,21 +1,20 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Car } from '../DTO/Car';
 import { NgForm } from '@angular/forms';
-import { CarDataService } from '../services/car/car-data.service';
-import { User } from '../DTO/User';
-import { CarListComponent } from '../car-list/car-list.component';
+import { Car } from 'src/app/DTO/Car';
+import { CarListComponent } from 'src/app/car-list/car-list.component';
+import { CarDataService } from 'src/app/services/car/car-data.service';
 
 @Component({
-  selector: 'app-car-list-details',
-  templateUrl: './car-details.component.html',
-  styleUrls: ['./car-details.component.css']
+  selector: 'app-admin-car-details',
+  templateUrl: './admin-car-details.component.html',
+  styleUrls: ['./admin-car-details.component.css']
 })
-export class CarDetailsComponent implements OnInit {
+export class AdminCarDetailsComponent implements OnInit {
+
 
   @Input() car:Car;
   notEditable : boolean = true;
   buttonText : string = "Edit";
-  user : User = <User>JSON.parse(sessionStorage.getItem('userDetail')); 
   newCars : Car[] = [];
 
   constructor(private cdService : CarDataService, private cl : CarListComponent) { }
@@ -60,4 +59,5 @@ export class CarDetailsComponent implements OnInit {
       });
       this.cl.cars = this.newCars;
   }
+
 }

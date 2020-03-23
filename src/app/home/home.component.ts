@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { LotsService } from '../lots.service';
+import { LotsService } from '../services/lots/lots.service';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication/authentication.service';
 import { Lots } from '../DTO/Lots';
-import { ZoneService } from '../zone.service';
+import { ZoneService } from '../services/zone/zone.service';
 import { Zone } from '../DTO/Zone';
 import { User } from '../DTO/User';
 import { CarDetailsComponent } from 'src/app/car-details/car-details.component';
-import { UserCarDataService } from 'src/app/userCar-data.service';
+import { UserCarDataService } from 'src/app/services/user/userCar-data.service';
 import { Car } from '../DTO/Car';
 import { ParkedCars } from '../DTO/ParkedCars';
 import { ServerMsg } from '../DTO/ServerMsg';
-import { BookingsService } from '../bookings.service';
+import { BookingsService } from '../services/bookings/bookings.service';
 
 @Component({
   selector: 'app-home',

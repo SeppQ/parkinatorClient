@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Car } from '../dto/Car';
 import { User } from '../DTO/User';
-import { CarDataService } from '../car-data.service';
+import { CarDataService } from '../services/car/car-data.service';
 
 @Component({
   selector: 'app-new-car',

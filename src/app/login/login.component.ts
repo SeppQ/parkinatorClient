@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication/authentication.service';
 import {Router} from '@angular/router';
 import { Login } from '../DTO/Login';
-import { LoginDataService } from '../login-data.service';
-import { UserDetailsDataService } from '../user-details-data.service';
+import { LoginDataService } from 'src/app/services/login/login-data.service';
+import { UserDetailsDataService } from '../services/user/user-details-data.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

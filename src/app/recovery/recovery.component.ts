@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication/authentication.service';
 import { Login } from '../DTO/Login';
 import { User } from '../DTO/User';
 import { Router } from '@angular/router';
-import { RecoveryDataService } from '../recovery-data.service';
-import { PasswordRecoveryDataService } from '../password-recovery-data.service';
+import { RecoveryDataService } from '../services/recovery/recovery-data.service';
+import { PasswordRecoveryDataService } from '../services/password-recovery/password-recovery-data.service';
 
 @Component({
   selector: 'app-recovery',

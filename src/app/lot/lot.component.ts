@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication/authentication.service';
 import { Router } from '@angular/router';
-import { LotsService } from '../lots.service';
+import { LotsService } from '../services/lots/lots.service';
 import { Lots } from '../DTO/Lots';
 import { ServerMsg } from '../DTO/ServerMsg';
 import { Zone } from '../DTO/Zone';
 import { ThrowStmt } from '@angular/compiler';
-import { ZoneService } from '../zone.service';
+import { ZoneService } from '../services/zone/zone.service';
 @Component({
   selector: 'app-lot',
   templateUrl: './lot.component.html',

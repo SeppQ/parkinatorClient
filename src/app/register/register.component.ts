@@ -1,12 +1,12 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication/authentication.service';
 import { User } from '../DTO/User';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Login } from '../DTO/Login';
-import { UserDataService } from '../user-data.service';
-import { LoginDataService } from '../login-data.service';
-import { UserDetailsDataService } from '../user-details-data.service';
+import { UserDataService } from '../services/user/user-data.service';
+import { LoginDataService } from '../services/login/login-data.service';
+import { UserDetailsDataService } from '../services/user/user-details-data.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

@@ -1,32 +1,28 @@
 import { Component, OnInit, Output, EventEmitter, Injectable } from '@angular/core';
-import { User } from '../DTO/User';
-import { Car } from '../DTO/Car';
-import { CarDetailsComponent } from '../car-details/car-details.component';
-import { UserCarDataService } from '../services/user/userCar-data.service';
-
+import { Car } from 'src/app/DTO/Car';
+import { CarDataService } from 'src/app/services/car/car-data.service';
 @Injectable({
   providedIn: 'root'
 })
+
 @Component({
-  selector: 'app-car-list',
-  templateUrl: './car-list.component.html',
-  styleUrls: ['./car-list.component.css']
+  selector: 'app-admin-car-list',
+  templateUrl: './admin-car-list.component.html',
+  styleUrls: ['./admin-car-list.component.css']
 })
-export class CarListComponent implements OnInit {
+export class AdminCarListComponent implements OnInit {
 
   @Output() selectedCar = new EventEmitter<Car>();
   selectedCarID : number;
-  user: User;
   cars: Car[] = [];
   errorMsg :String = null;
   car_id : number;
 
-  constructor(private cdService :UserCarDataService) { }
+  constructor(private cdService :CarDataService) { }
 
 
   ngOnInit() {
-    this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
-    this.cdService.getUserCars(this.user.user_id).subscribe( data => {
+    this.cdService.readCars().subscribe( data => {
       
       console.log(data.toString());
       this.cars = data;
@@ -51,5 +47,4 @@ export class CarListComponent implements OnInit {
     return ; // or item.id
 
   }
-
 }
