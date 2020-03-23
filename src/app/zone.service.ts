@@ -19,6 +19,6 @@ export class ZoneService {
   }
   getZones(id : string): Observable<Zone[]>{
     this.jsonId =  '{"lot_id" : ' + id  + '}'
-    return this.http.get<Zone[]>(this.zoneUrl, this.auth.httpOptions);
+    return this.http.post<Zone[]>(this.zoneUrl,this.jsonId, this.auth.httpOptions);
   }  
 }
