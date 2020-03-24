@@ -12,7 +12,7 @@ import { Car } from '../DTO/Car';
 import { ParkedCars } from '../DTO/ParkedCars';
 import { ServerMsg } from '../DTO/ServerMsg';
 import { BookingsService } from '../services/bookings/bookings.service';
-
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   lots: Lots[] = [];
   zones: Zone[] = [];
   cars: Car[] = [];
-  zoneSets: boolean;
+  zoneSets: boolean = true;
   user: User;
   userDetails: User;
   errorMsg: String = null;
@@ -33,55 +33,62 @@ export class HomeComponent implements OnInit {
   zoneNameId: string;
   carRegId: string;
   bookTo: string;
-  zoneId : number;
-  carId : number;
-  parkedCars : ParkedCars[]=[];
+  zoneId: number;
+  carId: number;
+  parkedCars: ParkedCars[] = [];
+  butDisabled: boolean = true;
+  myDate = new Date();
+  minDate: string;
   ngOnInit() {
-    
+
     this.userDetails = <User>JSON.parse(sessionStorage.getItem('userDetail'));
 
     this.lotservice.getCarParkLots().subscribe(data => {
 
       console.log(data.toString());
       this.lots = data;
-
     });
-
-    this.zoneservice.getZones().subscribe(data => {
-
-      this.zones = data;
-
-
-    });
-
+    this.minDate = formatDate(this.myDate.setDate(this.myDate.getDate()), "yyyy-MM-dd", 'en');
     this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
-    this.cdservice.getUserCars(this.user.user_id).subscribe(data => {
 
-      console.log(data.toString());
-      this.cars = data;
 
-      this.errorMsg = null;
-    },
-      err => {
-        console.log("Error = ", err.message);
-        this.errorMsg = err.message
-      });
+    this.user = new User(this.userDetails.user_id, "", "", "", "", "", "", false);
+    this.bookingsService.displayBookings(this.user).subscribe(data => {
+      this.parkedCars = data;
+      console.log(data);
 
-      this.user = new User(this.userDetails.user_id,"","","","","","",false);
-      this.bookingsService.displayBookings(this.user).subscribe(data =>{
-        this.parkedCars = data;
-        console.log(data);
-
-      });
+    });
 
   }
-  setLot(id: number) {
-    sessionStorage.setItem('lotIdHome', id.toString());
-    this.zoneSets = true;
+  setLot(id: string) {
+
+    this.zoneSets = false;
+
+    this.lotservice.getCarParkLots().subscribe(data => {
+
+      console.log(data.toString());
+      this.lots = data;
+      data.forEach(element => {
+        if (element.parking_name == id) {
+          this.zoneservice.getZones(element.lot_id.toString()).subscribe(data => {
+            this.zones = data;
+          });
+        }
+      });
+
+      this.cdservice.getUserCars(this.user.user_id).subscribe(data => {
+
+        console.log(data.toString());
+        this.cars = data;
+  
+        this.errorMsg = null;
+      });
+
+    });
   }
   addBooking() {
     this.zones.forEach(element => {
-      
+      console.log(this.zoneNameId);
       if (element.zone_name == this.zoneNameId) {
         this.zoneId = element.zone_id;
       }
@@ -94,12 +101,12 @@ export class HomeComponent implements OnInit {
 
 
     event.preventDefault;
-    this.pc = (new ParkedCars(this.zoneId,this.carId, this.bookTo, this.bookTo,this.userDetails.user_id));
+    this.pc = (new ParkedCars(this.zoneId, this.carId, this.bookTo, this.bookTo, this.userDetails.user_id));
     this.bookingsService.addBooking(this.pc).subscribe(data => {
       this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
       window.alert(this.msg.statusCode + "  " + this.msg.message);
     })
   }
 
-  
+
 }

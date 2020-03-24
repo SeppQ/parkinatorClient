@@ -10,14 +10,15 @@ import { Observable } from 'rxjs';
 export class ZoneService {
 
   constructor(private auth : AuthenticationService, private http: HttpClient) { }
-  zoneUrl: string = this.auth.url + "zone";
-
+  zoneUrl: string = this.auth.url + "zone/getZones/";
+  jsonId : string;
   addZone(zone : Zone){
     let jsonstr = JSON.stringify(zone);
     console.log(jsonstr);
     return this.http.post(this.zoneUrl,jsonstr,this.auth.httpOptions);
   }
-  getZones(): Observable<Zone[]>{
-    return this.http.get<Zone[]>(this.zoneUrl, this.auth.httpOptions);
+  getZones(id : string): Observable<Zone[]>{
+    this.jsonId =  '{"lot_id" : ' + id  + '}'
+    return this.http.post<Zone[]>(this.zoneUrl,this.jsonId, this.auth.httpOptions);
   }  
 }

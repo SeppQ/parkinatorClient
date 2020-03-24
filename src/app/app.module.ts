@@ -42,6 +42,7 @@ import { AdminParkingzonesDetailsComponent } from './admin/parkingzones/admin-pa
 import { AdminNewUserComponent } from './admin/user/admin-new-user/admin-new-user.component';
 import { AdminNewCcComponent } from './admin/cc/admin-new-cc/admin-new-cc.component';
 import { AdminNewCarComponent } from './admin/car/admin-new-car/admin-new-car.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +80,7 @@ import { AdminNewCarComponent } from './admin/car/admin-new-car/admin-new-car.co
     AdminNewUserComponent,
     AdminNewCcComponent,
     AdminNewCarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

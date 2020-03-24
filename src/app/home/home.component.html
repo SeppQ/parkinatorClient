@@ -1,55 +1,178 @@
 <app-header></app-header>
 
-<div class="container">
-    <div class="row">
-      <div class="col-sm">
-        <div class=" card " style="width: 18em;">
-            <div class="card-header">
-                <h3>Your Bookings</h3>
-            </div >
-            <div *ngIf="parkedCars!=[]">
-                <div *ngFor="let parkedCar of parkedCars">
-                    {{parkedCar.zone_id}}
-                    {{parkedCar.car_id}}
-                    Booked from {{parkedCar.book_from}} To {{parkedCar.book_to}}
-                </div>
-                </div>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class=" row justify-content-center">
-            <div class=" card " style="width: 18em;">
-                <div class="card-header">
-                    <h3>Avaivable Car Parks</h3>
-                </div>
-                <div *ngFor="let lot of lots">
-                    <form (submit)="setLot(lot.lot_id)">
-                    <button class="btn btn-block btn-outline-dark card-header ">{{lot.parking_name}}</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="col-sm">
-            <div  *ngIf="zoneSets">
-                <div class=" card " style="width: 18em;">
-                    <div class="card-header">
-                        <h3>Add Your Booking</h3>
-                    </div>
-                        <div>
-                            <form (submit)="addBooking($event)" class="form-group form-control">
-                                <select class="form-control" [(ngModel)]="zoneNameId" name="zoneNameId">
-                                    <option *ngFor="let zone of zones"  > {{zone.zone_name}}</option>
-                                </select>
-                                <input type="date" [(ngModel)]="bookTo" name="bookTo" >
-                                <select class="form-control" [(ngModel)]="carRegId" name="carRegId">
-                                    <option *ngFor="let car of cars" > {{car.car_reg}}</option>
-                                </select>
-                                <button class="btn btn-primary">Add Bookings</button>
-                            </form>
+<!--<section>
+    <div class="container-fluid">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+            <div class="row pt-md-5 mt-md-3 mb-5">
+                <div class="col-sm">
+                    <div class=" card " style="width: 18em;">
+                        <div class="card-header">
+                            <h3>Your Bookings</h3>
                         </div>
+                        <div *ngIf="parkedCars!=[]">
+                            <div *ngFor="let parkedCar of parkedCars">
+                                {{parkedCar.zone_id}}
+                                {{parkedCar.car_id}}
+                                Booked from {{parkedCar.book_from}} To {{parkedCar.book_to}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class=" row justify-content-center">
+                        <div class=" card " style="width: 18em;">
+                            <div class="card-header">
+                                <h3>Avaivable Car Parks</h3>
+                            </div>
+                            <div *ngFor="let lot of lots">
+                                <form (submit)="setLot(lot.lot_id)">
+                                    <button
+                                        class="btn btn-block btn-outline-dark card-header ">{{lot.parking_name}}</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div *ngIf="zoneSets">
+                        <div class=" card " style="width: 18em;">
+                            <div class="card-header">
+                                <h3>Add Your Booking</h3>
+                            </div>
+                            <div>
+                                <form (submit)="addBooking($event)" class="form-group form-control">
+                                    <select class="form-control" [(ngModel)]="zoneNameId" name="zoneNameId">
+                                        <option *ngFor="let zone of zones"> {{zone.zone_name}}</option>
+                                    </select>
+                                    <input type="date" [(ngModel)]="bookTo" name="bookTo">
+                                    <select class="form-control" [(ngModel)]="carRegId" name="carRegId">
+                                        <option *ngFor="let car of cars"> {{car.car_reg}}</option>
+                                    </select>
+                                    <button class="btn btn-primary">Add Bookings</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-      </div>
+        </div>
     </div>
-  </div>
+</section>
+-->
+<section>
+    <div class="container-fluid mh-100">
+        <div class="row ">
+            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-xl-6 col-12 mb-4 mb-xl-0">
+                        <div id="back" class="bg-dark text-white p-4 rounded">
+                            <h4 class="mb-5">Add Your Booking</h4>
+                            <div id="booking" class="section">
+                                <div class="section-center">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="container">
+                                                <form (submit)="addBooking($event)">
+                                                    <div class="row ">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+
+                                                                <span class="form-label">Select Parking Lot</span>
+                                                                <select class="form-control"
+                                                                    (change)="setLot($event.target.value);">
+                                                                    <option value="-1">Avaivable Lots</option>
+                                                                    <option *ngFor="let lot of lots">
+                                                                        {{lot.parking_name}}</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <span class="form-label">Select The Zone</span>
+                                                                <select [disabled]="zoneSets" class="form-control"
+                                                                    [(ngModel)]="zoneNameId" name="zoneNameId">
+                                                                    <option value="-1">Avaivable Zones</option>
+                                                                    <option *ngFor="let zone of zones">
+                                                                        {{zone.zone_name}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <form (onClick)="setLot(lot.lot_id)">
+                                                                    <span class="form-label">Select Day</span>
+                                                                    <input [disabled]="zoneSets" class="form-control"
+                                                                        type="date" min="{{minDate}}"
+                                                                        [(ngModel)]="bookTo" name="bookTo">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+
+                                                                <span class="form-label">Select Your Car</span>
+                                                                <select [disabled]="zoneSets" class="form-control"
+                                                                    [(ngModel)]="carRegId" name="carRegId">
+                                                                    <option value="-1">Your Cars</option>
+                                                                    <option *ngFor="let car of cars"> {{car.car_reg}}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <button [disabled]="zoneSets" class="btn btn-block">Add
+                                                            Booking</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="back" class="col-xl-6 col-12">
+                        <h4 class="mb-5 text-white p-4 rounded">Your Bookings</h4>
+                        <div *ngIf="parkedCars!=[]">
+                            <div *ngFor="let parkedCar of parkedCars">
+                                <div class="container-fluid bg-white">
+
+                                    <div class="row py-3 mb-4 task-border align-items-center">
+                                        <div class="col-sm-9 col-8">
+                                            {{parkedCar.zone_id}}
+                                            {{parkedCar.car_id}}
+                                            Booked from {{parkedCar.book_from}} To {{parkedCar.book_to}}
+                                        </div>
+                                        <div class="col-1">
+                                            <a href="#" data-toggle="tooltip" title="<h6>edit</h6>" data-html="true"
+                                                data-placement="top"><i
+                                                    class="fas fa-edit fa-lg text-success mr-2"></i></a>
+                                        </div>
+                                        <div class="col-1">
+                                            <a href="#" data-toggle="tooltip" title="<h6>delete</h6>" data-html="true"
+                                                data-placement="top"><i
+                                                    class="fas fa-trash-alt fa-lg text-danger"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>
