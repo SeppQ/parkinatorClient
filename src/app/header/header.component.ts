@@ -16,6 +16,12 @@ export class HeaderComponent implements OnInit {
   webPage : string;
   date = new Date();
   ngOnInit() {
+    if (!localStorage.getItem('foo')) { 
+      localStorage.setItem('foo', 'no reload') 
+      location.reload() 
+    } else {
+      localStorage.removeItem('foo') 
+    }    
     this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
     console.log(this.user)
     this.getPageDetails();

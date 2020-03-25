@@ -40,12 +40,7 @@ export class HomeComponent implements OnInit {
   minDate: string;
   rl:number = 0;
   ngOnInit() {
-    if (!localStorage.getItem('foo')) { 
-      localStorage.setItem('foo', 'no reload') 
-      location.reload() 
-    } else {
-      localStorage.removeItem('foo') 
-    }
+
 
     this.onPageLoad();
 
