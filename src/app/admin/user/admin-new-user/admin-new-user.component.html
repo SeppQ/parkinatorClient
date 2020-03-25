@@ -2,7 +2,7 @@
 <button type="button"
 class="btn btn-outline-light"
 data-toggle="modal"
-data-target="#newCarModal"
+data-target="#newUserModal"
 (click)="openNew()">
 <i class="fas fa-plus text-success"></i>
 </button>
@@ -29,7 +29,7 @@ data-target="#newCarModal"
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input class="form-control" [(ngModel)]=user.hash/>
+                    <input class="form-control" type="password" [(ngModel)]=user.hash/>
                 </div>
                 
                 <div class="form-group">

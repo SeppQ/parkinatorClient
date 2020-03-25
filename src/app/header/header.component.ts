@@ -16,22 +16,22 @@ export class HeaderComponent implements OnInit {
   webPage : string;
   date = new Date();
   ngOnInit() {
-    if (!localStorage.getItem('foo')) { 
-      localStorage.setItem('foo', 'no reload') 
-      location.reload() 
-    } else {
-      localStorage.removeItem('foo') 
-    }    
+
     this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
+    sessionStorage.setItem('type',this.user.user_type);
     console.log(this.user)
     this.getPageDetails();
     
 
-  //  if(sessionStorage.getItem('loggedIn').toString() == 'true'){
-  //    this.rout.navigate(['/'])
-  //  }else{
-  //    this.rout.navigate(['/'])
-  //  }
+    if(sessionStorage.getItem('loggedIn').toString() == 'true'){
+      if(sessionStorage.getItem('type') != "admin" || sessionStorage.getItem('type') != "lotManager"){
+        if(this.rout.url == "/admin-user-page" || this.rout.url == "/admin-car-page" || this.rout.url == "/admin-cc-page" || this.rout.url == "/lots"){
+          this.rout.navigate(['/home'])
+        }
+      }
+    }else{
+      this.rout.navigate(['/'])
+    }
   }
   logout(){
     sessionStorage.removeItem('userDetail');

@@ -9,13 +9,11 @@
         <div *ngIf="isAdmin" class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
           <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Parkinator</a>
           <div class="bottom-border pb-3">
-            <img src="../../assets/profile.png" width="50" class="rounded-circle mr-3">
+            <img src="../../assets/nopicture.png" width="50" class="rounded-circle mr-3">
             <a href="/profile" class="text-white">{{username}}</a>
           </div>
 
           <ul class="navbar-nav flex-column mt-4">
-            <li class="nav-item"><a routerLink="/home" [ngClass]="{'current' : rout.url == '/home'}"  class="nav-link text-white p-3 mb-2 "><i class="fas fa-home text-light fa-lg mr-3"></i>Dashboard</a></li>
-            <li class="nav-item"><a routerLink="/car" [ngClass]="{'current' : rout.url == '/car'}" class="nav-link" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-car text-light fa-lg mr-3"></i>Car</a></li>
             <li class="nav-item"><a routerLink="/admin-user-page" [ngClass]="{'current' : rout.url == '/admin-user-page'}"  class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-users text-light fa-lg mr-3"></i>Manage Users</a></li>
             <li class="nav-item"><a routerLink="/admin-car-page" [ngClass]="{'current' : rout.url == '/admin-car-page'}" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-car text-light fa-lg mr-3"></i>Manage Cars</a></li>
             <li class="nav-item"><a routerLink="/admin-cc-page" [ngClass]="{'current' : rout.url == '/admin-cc-page'}" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-exclamation-triangle text-light fa-lg mr-3"></i>Manage Clamping Companies</a></li>

@@ -45,12 +45,13 @@ export class LoginComponent implements OnInit {
     this.ldService.getUserLogin(this.login).subscribe(data => {
       console.log(data);
       if(JSON.parse(data.toString()) == true){
-        this.rout.navigate(['/home']);
+        
         this.auth.setLoggedIn(true);
         sessionStorage.setItem('login',JSON.stringify(this.login));
         this.uddService.getUserDetails(this.login).subscribe(data => {
           
           sessionStorage.setItem('userDetail',JSON.stringify(data));
+          this.rout.navigate(['/home']);
         })
         
       }
