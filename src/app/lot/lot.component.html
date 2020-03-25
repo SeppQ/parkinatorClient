@@ -1,66 +1,120 @@
-<div class="row justify-content-center">
-    <div class="card " style="width: 18rem;">
-        <div class="card-header">
-            <form class="form-signin" (submit)="addingLot($event)">
-                <h3>Register Car Park</h3>
-                <input type="text" [(ngModel)]="lotName" name="lotName" placeholder="Enter Lot Name"
-                    class="form-control ">
-                <br>
-                <button (click)="refresh()" class="btn btn-primary btn-block">Add</button>
-            </form>
-        </div>
+<app-header></app-header>
 
-    </div>
-</div>
+<section>
+    <div class="container-fluid ">
+        <div class="col-xl-10 col-lg-3 col-md-8 ml-auto ">
+            <div  class="col-xl-7 col-6 mb-4 mb-xl-0">
 
-<div class="dropdown row justify-content-center">
-    <div class="card " style="width: 18rem;">
-        <div *ngFor="let lot of lots" class="card-header ">
-
-
-            <form (submit)="removeLots(lot.lot_id)">
-                <h4>{{lot.parking_name}}</h4>
-                <button (click)="refresh()" class="btn btn-danger" type="submit"><i
-                        class="material-icons">delete</i></button>
-            </form>
-            <form (submit)="setId(lot.lot_id)">
-                <button type="submit" class="btn btn-outline-dark" data-toggle="modal" data-target="#newCarModal">
-                    Add Zone
-                </button>
-            </form>
         </div>
     </div>
-</div>
+    </div>
+    <br>
+    <div class="container-fluid">      
+            <div class="col-xl-10 col-lg-3 col-md-8 ml-auto">
+                <div class="row align-items-center">
+                    <div id="back" class="col-xl-3 col-6 mb-4 mb-xl-0">
+                        <br>
+                        <form class="form-signin text-white text-center" (submit)="addingLot($event)">
+                            <br>
+                            <h3>Register Car Park</h3>
+                            <input type="text" [(ngModel)]="lotName" name="lotName" placeholder="Enter Lot Name"
+                                class="form-control ">
+                            <br>
+                            <button (click)="refresh()" class="btn btn-primary btn-block">Add</button>
+                        </form>                    
 
-<div class="modal fade" id="newCarModal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Register Zone for Lot</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span area-hidden="true">&times;</span>
-                </button>
+
+                    </div>
+                    <div  class="col-1">
+                    </div>
+                    <div id="back" class="col-xl-4 col-6 mb-4 mb-xl-0">
+                        <br>
+                        <h4 class="text-white">Parking Lots</h4>
+                        <div *ngIf="lots!=[]">
+                            <div *ngFor="let lot of lots">
+                                <div class="container-fluid bg-white rounded">
+
+                                    <div class="row py-3 mb-4 task-border align-items-center">
+                                        <div class="col-sm-9 col-8">
+                                            <h4>{{lot.parking_name}}</h4>
+                                        </div>
+                                        <div class="col-1">
+                                            <a  (click)="setId(lot.lot_id)" data-toggle="modal" data-target="#newCarModal"  title="edit" data-html="true"
+                                                data-placement="top"><i
+                                                    class="fas fa-edit fa-lg text-success mr-2 mouse"></i></a>
+                                        </div>
+                                        <div class="col-1">
+                                            <a (click)="removeLots(lot.lot_id)" data-toggle="tooltip" title="delete" data-html="true"
+                                                data-placement="top"><i
+                                                    class="fas fa-trash-alt fa-lg text-danger mouse"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                      
+                    </div>
+                    <div id="back" class="col-xl-4 col-6 mb-4 mb-xl-0">
+                        <br>
+                        <h4 class="text-white">Parking Zones</h4>
+                        <div *ngIf="zone!=[]">
+                            <div *ngFor="let zone of zone">
+                                <div class="container-fluid bg-white rounded">
+
+                                    <div class="row py-3 mb-4 task-border align-items-center">
+                                        <div class="col-sm-9 col-8">
+                                            <h4>{{zone.zone_name}}</h4>
+                                        </div>
+                                        <div class="col-1">
+                                            <a  (click)="setId(lot.lot_id)" data-toggle="tooltip" title="edit" data-html="true"
+                                                data-placement="top"><i
+                                                    class="fas fa-edit fa-lg text-success mr-2 mouse"></i></a>
+                                        </div>
+                                        <div class="col-1">
+                                            <a (click)="removeLots(lot.lot_id)" data-toggle="tooltip" title="delete" data-html="true"
+                                                data-placement="top"><i
+                                                    class="fas fa-trash-alt fa-lg text-danger mouse"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                      
+                    </div>
+
+                </div>
             </div>
-            
-            <div class="modal-body">
-                <div class="card " style="width: 29rem;">
-                    <form class="form-signin" (submit)="addingZone($event)">
-                        <input type="text" [(ngModel)]="zoneName" name="zoneName" placeholder="Enter Zone Name"
-                            class="form-control ">
-                        <input type="number" [(ngModel)]="maxSpaces" name="maxSpaces" placeholder="Enter Max Spaces"
-                            class="form-control ">
-                        <input type="number" [(ngModel)]="maxDisabledSpaces" name="maxDisabledSpaces"
-                            placeholder="max disables spaces" class="form-control ">      
-                            <button type="submit" class="btn btn-primary"  >Add</button>  
-                        </form>          
+       
+    </div>
+    <div class="modal fade" id="newCarModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Register Zone for Lot</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span area-hidden="true">&times;</span>
+                    </button>
                 </div>
                 
+                <div class="modal-body">
+                    <div class="card " style="width: 29rem;">
+                        <form class="form-signin" (submit)="addingZone($event)">
+                            <input type="text" [(ngModel)]="zoneName" name="zoneName" placeholder="Enter Zone Name"
+                                class="form-control ">
+                            <input type="number" [(ngModel)]="maxSpaces" name="maxSpaces" placeholder="Enter Max Spaces"
+                                class="form-control ">
+                            <input type="number" [(ngModel)]="maxDisabledSpaces" name="maxDisabledSpaces"
+                                placeholder="max disables spaces" class="form-control ">      
+                                <button type="submit" class="btn btn-primary"  >Add</button>  
+                            </form>          
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" (click)="refresh()" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    
+                </div>
+            
             </div>
-            <div class="modal-footer">
-                <button type="button" (click)="refresh()" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                
-            </div>
-        
         </div>
     </div>
-</div>
+</section>
+<br>

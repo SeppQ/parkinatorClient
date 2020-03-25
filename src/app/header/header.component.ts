@@ -9,21 +9,37 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   user : User;
   isAdmin : boolean;
+  isRegular : boolean;
+  isLotManager : boolean;
   username : string;
   constructor(private rout: Router) {}
-
+  webPage : string;
+  date = new Date();
   ngOnInit() {
     this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
-    this.username = this.user.user_fullname;
-    this.isAdmin = (this.user.user_type == "admin");
-    console.log(this.user);
-    console.log("IS admin " + this.isAdmin + " " +this.user.user_type);
+    console.log(this.user)
+    this.getPageDetails();
+    
+
+  //  if(sessionStorage.getItem('loggedIn').toString() == 'true'){
+  //    this.rout.navigate(['/'])
+  //  }else{
+  //    this.rout.navigate(['/'])
+  //  }
   }
   logout(){
-    sessionStorage.removeItem('userDetails');
+    sessionStorage.removeItem('userDetail');
+    sessionStorage.removeItem('login');
     sessionStorage.setItem('loggedIn','false');
     this.rout.navigate(["/"]);
 
+  }
+  getPageDetails(){
+    this.webPage=(this.rout.url).substring(1);
+    this.username = this.user.user_fullname;
+    this.isAdmin = (this.user.user_type == "admin");
+    this.isRegular = (this.user.user_type == "regular");
+    this.isLotManager = (this.user.user_type == "lotManager");
   }
 
 }

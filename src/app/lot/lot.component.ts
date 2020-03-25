@@ -23,7 +23,8 @@ export class LotComponent implements OnInit {
   maxSpaces : number;
   isVip :boolean;
   maxDisabledSpaces:number;
-  zone : Zone;
+  zones : Zone;
+  zone : Zone[]=[];
 
   
   constructor(private auth: AuthenticationService, private rout: Router, private lotservice: LotsService, private zoneservice: ZoneService) { }
@@ -31,17 +32,13 @@ export class LotComponent implements OnInit {
   ngOnInit() {
     this.lotservice.getCarParkLots().subscribe(data => {
 
-      console.log(data.toString());
       this.lots = data;
 
-      this.lots.forEach(element => {
-        console.log(element);
-      });
     });
-
+    this.getZones();
   }
   refresh(): void {
-   //window.location.reload();
+   window.location.reload();
   }
   addingLot(){
     event.preventDefault;
@@ -60,6 +57,12 @@ export class LotComponent implements OnInit {
       this.lots = <Lots[]>JSON.parse(JSON.stringify(data));
     })
   }
+  getZones(){
+    this.zoneservice.getAllZones().subscribe(data =>{
+      this.zone = data;
+    })
+   
+  }  
   removeLots(lotid: number){
     event.preventDefault;
     this.lot = (new Lots(lotid, " ", 1));
@@ -67,15 +70,16 @@ export class LotComponent implements OnInit {
       this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
       window.alert(this.msg.statusCode + "  " + this.msg.message);
     })
+    this.refresh();
 
   }
   addingZone(){
     this.lotid = Number(sessionStorage.getItem("lotIdZone"))
-    this.zone = new Zone(1,this.zoneName,this.maxSpaces,false,this.lotid,this.maxDisabledSpaces);
-    console.log(JSON.stringify(this.zone));
-    this.zoneservice.addZone(this.zone).subscribe(data =>{
+    this.zones = new Zone(1,this.zoneName,this.maxSpaces,false,this.lotid,this.maxDisabledSpaces);
+    this.zoneservice.addZone(this.zones).subscribe(data =>{
       this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
       window.alert(this.msg.statusCode + "  " + this.msg.message)
     })
+    this.refresh();
   }
 }

@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
   zones: Zone[] = [];
   cars: Car[] = [];
   zoneSets: boolean = true;
-  user: User;
   userDetails: User;
   errorMsg: String = null;
   pc: ParkedCars;
@@ -39,25 +38,17 @@ export class HomeComponent implements OnInit {
   butDisabled: boolean = true;
   myDate = new Date();
   minDate: string;
+  rl:number = 0;
   ngOnInit() {
+    if (!localStorage.getItem('foo')) { 
+      localStorage.setItem('foo', 'no reload') 
+      location.reload() 
+    } else {
+      localStorage.removeItem('foo') 
+    }
 
-    this.userDetails = <User>JSON.parse(sessionStorage.getItem('userDetail'));
+    this.onPageLoad();
 
-    this.lotservice.getCarParkLots().subscribe(data => {
-
-      console.log(data.toString());
-      this.lots = data;
-    });
-    this.minDate = formatDate(this.myDate.setDate(this.myDate.getDate()), "yyyy-MM-dd", 'en');
-    this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
-
-
-    this.user = new User(this.userDetails.user_id, "", "", "", "", "", "", false);
-    this.bookingsService.displayBookings(this.user).subscribe(data => {
-      this.parkedCars = data;
-      console.log(data);
-
-    });
 
   }
   setLot(id: string) {
@@ -76,11 +67,11 @@ export class HomeComponent implements OnInit {
         }
       });
 
-      this.cdservice.getUserCars(this.user.user_id).subscribe(data => {
+      this.cdservice.getUserCars(this.userDetails.user_id).subscribe(data => {
 
         console.log(data.toString());
         this.cars = data;
-  
+
         this.errorMsg = null;
       });
 
@@ -107,6 +98,20 @@ export class HomeComponent implements OnInit {
       window.alert(this.msg.statusCode + "  " + this.msg.message);
     })
   }
+  onPageLoad() {
+    this.userDetails = <User>JSON.parse(sessionStorage.getItem('userDetail'));
 
+    this.lotservice.getCarParkLots().subscribe(data => {
+
+      console.log(data.toString());
+      this.lots = data;
+    });
+    this.minDate = formatDate(this.myDate.setDate(this.myDate.getDate()), "yyyy-MM-dd", 'en');
+
+
+    this.bookingsService.displayBookings(this.userDetails).subscribe(data => {
+      this.parkedCars = data;
+    });
+  }
 
 }

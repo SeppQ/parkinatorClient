@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../DTO/User';
 import { UserDataService } from '../services/user/user-data.service';
 import { UserDetailsDataService } from '../services/user/user-details-data.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -18,17 +19,18 @@ export class ProfileComponent implements OnInit {
   input: boolean = false;
   details: boolean = true;
   buttonName: string = "Update";
-  fullname : string;
-  email : string;
-  
+  fullname: string;
+  email: string;
+
   constructor(
-    private udService:UserDataService,
-    private uddService:UserDetailsDataService
-     ) { }
+    private udService: UserDataService,
+    private uddService: UserDetailsDataService,
+    private http : HttpClient
+  ) { }
 
   ngOnInit() {
     this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
-    
+
   }
   update() {
     event.preventDefault()
@@ -42,30 +44,36 @@ export class ProfileComponent implements OnInit {
         this.details = true;
       }
     }
-    else if(this.buttonName == "Save" && this.fullname == ""){
+    else if (this.buttonName == "Save" && this.fullname == "") {
       console.log("Fullname Required");
-      this.messageText="Warning! Fullname Required";
-      this.messageClass="alert alert-warning";
+      this.messageText = "Warning! Fullname Required";
+      this.messageClass = "alert alert-warning";
       this.message = true;
     }
-    else{
-      this.user = new User(-1,this.fullname,this.user.email,this.user.hash,this.user.user_type,this.user.question,this.user.answer_hash,this.user.has_disabled_badge);
+    else {
+      this.user = new User(-1, this.fullname, this.user.email, this.user.hash, this.user.user_type, this.user.question, this.user.answer_hash, this.user.has_disabled_badge);
       this.buttonName = "Update";
       this.input = false;
       this.details = true;
-      this.udService.updateUser(this.user).subscribe(data =>{
+      this.udService.updateUser(this.user).subscribe(data => {
         this.uddService.getUserDetails(this.user).subscribe(data => {
-          sessionStorage.setItem('userDetail',JSON.stringify(data));
+          sessionStorage.setItem('userDetail', JSON.stringify(data));
           this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
         })
-        
+
         this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
-      this.messageText="Success! Details updated";
-      this.messageClass="alert alert-success";
-      this.message = true;
+        this.messageText = "Success! Details updated";
+        this.messageClass = "alert alert-success";
+        this.message = true;
       });
       console.log("saved")
-      
+
     }
+  }
+  selectedFile = null;
+  processFile($event) {
+    this.selectedFile = event.target[0];
+    console.log(event);
+    
   }
 }

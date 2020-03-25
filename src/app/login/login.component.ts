@@ -27,13 +27,18 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    if(this.checkbox == true){
-      localStorage.setItem("remeber" , this.username)
+
+    if(sessionStorage.getItem('loggedIn').toString() == 'true'){
+      this.rout.navigate(['/home'])
+    }else{
+      this.rout.navigate(['/'])
     }
     this.username = localStorage.getItem("remeber");
   }
   loginUser(){
-    
+    if(this.checkbox == true){
+      localStorage.setItem("remeber" , this.username)
+    }
     event.preventDefault()
 
     this.login = ( new Login(this.username,this.hash));
@@ -44,6 +49,7 @@ export class LoginComponent implements OnInit {
         this.auth.setLoggedIn(true);
         sessionStorage.setItem('login',JSON.stringify(this.login));
         this.uddService.getUserDetails(this.login).subscribe(data => {
+          
           sessionStorage.setItem('userDetail',JSON.stringify(data));
         })
         

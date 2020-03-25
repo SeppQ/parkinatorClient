@@ -1,62 +1,53 @@
-<div class="row">
-    <div class="col"><h3>User Details</h3></div>
-</div>
-
-<!-- Delete User form -->
-<form (ngSubmit)="onSubmit2($event)" #detailsForm2="ngForm">   
-    <div class="form-group">
+<div id="userDetails" class="container text-white p-4 rounded">
+    <div class="row">
         <div class="col">
-            <button class='btn-outline-dark form-control ' type="submit"[value] ="user" (ngSubmit)="onSubmit2($event)">Remove User</button>
+            <h3>User Details</h3>
         </div>
     </div>
-</form>
 
-<!-- Edit User Form -->
-<form (ngSubmit)="onSubmit(detailsForm)" #detailsForm="ngForm">
-    <div class="form-group">
-        <label for="user_id">ID:</label>
-        <input type="text" name="user_id" ngModel class ="form-control"
-        [value] = "user.user_id"
-        [readonly]=true>
-    </div>
-    <div class="form-group">
-        <label for="user_fullname">Full Name:</label>
-        <input type="text" name="user_fullname" ngModel class ="form-control"
-        [value] = "user.user_fullname"
-        [readonly]="notEditable">
-    </div>
-    <div class="form-group">
-        <label for="email">Email Address:</label>
-        <input type="text" name="email" ngModel class ="form-control"
-        [value] = "user.email"
-        [readonly]="notEditable">
-    </div>
-    <div class="form-group">
-        <label for="user_type">User Type:</label>
-        <input type="text" name="user_type" ngModel class ="form-control"
-        [value] = "user.user_type"
-        [readonly]="notEditable">
-    </div>
-    <div class="form-group">
-        <label for="question">Security Question:</label>
-        <input type="text" name="question" ngModel class ="form-control"
-        [value] = "user.question"
-        [readonly]="notEditable">
-    </div>
-    <div class="form-group">
-        <label for="has_disabled_badge">Has A Disabled Badge:</label>
-        <input type="text" name="has_disabled_badge" ngModel class ="form-control"
-        [value] = "user.has_disabled_badge"
-        [readonly]="notEditable">
-    </div>
-    
-    <div class="col">
-        <button class='btn-outline-dark form-control' type="submit">{{buttonText}}</button>
-    </div>
-</form>
+    <!-- Delete User form -->
+    <form (ngSubmit)="onSubmit2($event)" #detailsForm2="ngForm">
+        <div class="form-group">
+            <div class="col">
+                <button class='btn-outline-danger form-control ' type="submit" [value]="user"
+                    (ngSubmit)="onSubmit2($event)">Remove User</button>
+            </div>
+        </div>
+    </form>
 
+    <!-- Edit User Form -->
+    <form (ngSubmit)="onSubmit(detailsForm)" #detailsForm="ngForm">
+        <div class="form-group">
+            <label for="user_id">ID:</label>
+            <input type="text" name="user_id" ngModel class="form-control" [value]="user.user_id" [readonly]=true>
+        </div>
+        <div class="form-group">
+            <label for="user_fullname">Full Name:</label>
+            <input type="text" name="user_fullname" ngModel class="form-control" [value]="user.user_fullname"
+                [readonly]="notEditable">
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input type="text" name="email" ngModel class="form-control" [value]="user.email" [readonly]="notEditable">
+        </div>
+        <div class="form-group">
+            <label for="user_type">User Type:</label>
+            <input type="text" name="user_type" ngModel class="form-control" [value]="user.user_type"
+                [readonly]="notEditable">
+        </div>
+        <div class="form-group">
+            <label for="question">Security Question:</label>
+            <input type="text" name="question" ngModel class="form-control" [value]="user.question"
+                [readonly]="notEditable">
+        </div>
+        <div class="form-group">
+            <label for="has_disabled_badge">Has A Disabled Badge:</label>
+            <input type="text" name="has_disabled_badge" ngModel class="form-control" [value]="user.has_disabled_badge"
+                [readonly]="notEditable">
+        </div>
 
-
-
-
-
+        <div class="col">
+            <button class='btn-outline-success form-control' type="submit">{{buttonText}}</button>
+        </div>
+    </form>
+</div>

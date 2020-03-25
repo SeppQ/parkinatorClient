@@ -37,7 +37,6 @@ export class AdminCarListComponent implements OnInit {
   }
 
   carSelected(i : number){
-    console.log("Car ID = " + i);
     this.selectedCar.emit(this.cars.find(car => car.car_id === i));    
     this.selectedCarID = i;
   }
