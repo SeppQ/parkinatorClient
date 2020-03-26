@@ -24,9 +24,10 @@ export class LotComponent implements OnInit {
   isVip :boolean;
   maxDisabledSpaces:number;
   zones : Zone;
+  zoneMaps : Zone;
   zone : Zone[]=[];
-  lat:number;
-  lng:number;
+  latitude:number;
+  longitude:number;
   
   constructor(private auth: AuthenticationService, private rout: Router, private lotservice: LotsService, private zoneservice: ZoneService) { }
 
@@ -76,17 +77,17 @@ export class LotComponent implements OnInit {
   }
   addingZone(){
     this.lotid = Number(sessionStorage.getItem("lotIdZone"))
-    this.zones = new Zone(1,this.zoneName,this.maxSpaces,false,this.lotid,this.maxDisabledSpaces,this.lat,this.lng);
-    this.zoneservice.addZone(this.zones).subscribe(data =>{
+    this.zoneMaps = new Zone(1,this.zoneName,this.maxSpaces,false,this.lotid,this.maxDisabledSpaces,this.latitude,this.longitude);
+    this.zoneservice.addZone(this.zoneMaps).subscribe(data =>{
       this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
       window.alert(this.msg.statusCode + "  " + this.msg.message)
     })
-   // this.refresh();
+    this.refresh();
   }
   placeMarker($event){
     console.log($event.coords.lat);
     console.log($event.coords.lng);
-    this.lat = $event.coords.lat;
-    this.lng = $event.coords.lng;
+    this.latitude = $event.coords.lat;
+    this.longitude = $event.coords.lng;
   }
 }

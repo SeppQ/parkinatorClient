@@ -19,7 +19,7 @@
 
                                                                 <span class="form-label">Select Parking Lot</span>
                                                                 <select class="form-control"
-                                                                    (change)="setLot($event.target.value);">
+                                                                    (change)="setLot($event.target.value);" [(ngModel)]="lotNameId" name="lotNameId">
                                                                     <option value="-1">Avaivable Lots</option>
                                                                     <option *ngFor="let lot of lots">
                                                                         {{lot.parking_name}}</option>
@@ -90,7 +90,7 @@
                     </div>
                     <div id="back" class="col-xl-6 col-12">
                         <h4 class="mb-5 text-white p-4 rounded">Your Bookings</h4>
-                        <div *ngIf="parkedCars!=[]">
+                        <div ng-if="parkedCars!=[]">
                             <div *ngFor="let parkedCar of parkedCars">
                                 <div class="container-fluid bg-white rounded">
 

@@ -16,7 +16,7 @@ export class ZoneService {
   addZone(zone : Zone){
     let jsonstr = JSON.stringify(zone);
     console.log(jsonstr);
-    return this.http.post(this.zoneUrl,jsonstr,this.auth.httpOptions);
+    return this.http.post(this.allZoneUrl,jsonstr,this.auth.httpOptions);
   }
   getZones(id : string): Observable<Zone[]>{
     this.jsonId =  '{"lot_id" : ' + id  + '}'

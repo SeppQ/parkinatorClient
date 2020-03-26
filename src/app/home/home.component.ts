@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   bookTo: string;
   zoneId: number;
   carId: number;
-  parkedCars: ParkedCars[] = [];
+  parkedCars: ParkedCars[] =  null;
   butDisabled: boolean = true;
   myDate = new Date();
   minDate: string;
