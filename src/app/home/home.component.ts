@@ -39,6 +39,8 @@ export class HomeComponent implements OnInit {
   myDate = new Date();
   minDate: string;
   rl:number = 0;
+  latitude:number;
+  longitude:number;
   ngOnInit() {
 
 
@@ -77,6 +79,7 @@ export class HomeComponent implements OnInit {
       console.log(this.zoneNameId);
       if (element.zone_name == this.zoneNameId) {
         this.zoneId = element.zone_id;
+
       }
     });
     this.cars.forEach(element => {
@@ -107,6 +110,15 @@ export class HomeComponent implements OnInit {
     this.bookingsService.displayBookings(this.userDetails).subscribe(data => {
       this.parkedCars = data;
     });
+  }
+  setCo(name : string){
+    this.zones.forEach(element => {
+      if (element.zone_name == name) {
+        this.latitude = element.alt;
+        this.longitude = element.lng;
+
+      }
+    });   
   }
 
 }

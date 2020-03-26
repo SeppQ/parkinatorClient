@@ -43,6 +43,7 @@ import { AdminNewUserComponent } from './admin/user/admin-new-user/admin-new-use
 import { AdminNewCcComponent } from './admin/cc/admin-new-cc/admin-new-cc.component';
 import { AdminNewCarComponent } from './admin/car/admin-new-car/admin-new-car.component';
 import { FooterComponent } from './footer/footer.component';
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,6 +88,9 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCDMIEsc1oXoONrD6IpwqAHzESB_LSM0Nw'
+    }),
     RouterModule.forRoot([
       {
         path: '',

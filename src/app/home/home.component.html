@@ -31,7 +31,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <span class="form-label">Select The Zone</span>
-                                                                <select [disabled]="zoneSets" class="form-control"
+                                                                <select (change)="setCo($event.target.value);" [disabled]="zoneSets" class="form-control"
                                                                     [(ngModel)]="zoneNameId" name="zoneNameId">
                                                                     <option value="-1">Avaivable Zones</option>
                                                                     <option *ngFor="let zone of zones">
@@ -75,6 +75,12 @@
                                                             Booking</button>
                                                     </div>
                                                 </form>
+                                                <br>
+                                                <br>
+                                                <h4 class="text-white">Zone Location</h4>
+                                                <agm-map (mapClick)="placeMarker($event)" [latitude]="latitude" [longitude]="longitude" [streetViewControl]="false" [mapTypeControl]="true" [fullscreenControl]="true">
+                                                    <agm-marker [latitude]="latitude" [zoom]="5" [longitude]="longitude" ></agm-marker>
+                                                 </agm-map>                                                
                                             </div>
                                         </div>
                                     </div>
