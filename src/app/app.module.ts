@@ -44,6 +44,10 @@ import { AdminNewCcComponent } from './admin/cc/admin-new-cc/admin-new-cc.compon
 import { AdminNewCarComponent } from './admin/car/admin-new-car/admin-new-car.component';
 import { FooterComponent } from './footer/footer.component';
 import { AgmCoreModule } from '@agm/core';
+import {  ZoneFilterPipe } from 'src/shared/zone-filter.pipe';
+import { LotFilterPipe } from 'src/shared/lot-filter.pipe';
+import { CcHomeComponent } from './cc-home/cc-home.component';
+import { CarRegFilterPipe } from 'src/shared/carReg-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,6 +86,10 @@ import { AgmCoreModule } from '@agm/core';
     AdminNewCcComponent,
     AdminNewCarComponent,
     FooterComponent,
+    ZoneFilterPipe,
+    LotFilterPipe,
+    CcHomeComponent,
+    CarRegFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -142,6 +150,11 @@ import { AgmCoreModule } from '@agm/core';
       {
         path: 'lots',
         component: LotComponent,
+        canActivate: [AuthenticationGuard]
+      } ,
+      {
+        path: 'ccHome',
+        component: CcHomeComponent,
         canActivate: [AuthenticationGuard]
       }
     ]),

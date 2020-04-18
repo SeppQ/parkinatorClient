@@ -16,7 +16,6 @@
                                                     <div class="row ">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-
                                                                 <span class="form-label">Select Parking Lot</span>
                                                                 <select class="form-control"
                                                                     (change)="setLot($event.target.value);" [(ngModel)]="lotNameId" name="lotNameId">
@@ -101,12 +100,12 @@
                                             Booked from {{parkedCar.book_from}} To {{parkedCar.book_to}}
                                         </div>
                                         <div class="col-1">
-                                            <a href="#" data-toggle="tooltip" title="edit" data-html="true"
-                                                data-placement="top"><i
+                                            <a href="#" (click)="setDetails(parkedCar)" data-toggle="tooltip" title="edit" data-html="true" data-toggle="modal"
+                                            data-target="#newCarModal"  data-placement="top"><i
                                                     class="fas fa-edit fa-lg text-success mr-2"></i></a>
                                         </div>
                                         <div class="col-1">
-                                            <a href="#" data-toggle="tooltip" title="delete" data-html="true"
+                                            <a href="#" (click)="deleteBooking(parkedCar)" data-toggle="tooltip" title="delete" data-html="true"
                                                 data-placement="top"><i
                                                     class="fas fa-trash-alt fa-lg text-danger"></i></a>
                                         </div>
@@ -120,3 +119,36 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="newCarModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Booking</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span area-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="card " style="width: 29rem;">
+                    <form class="form-signin" (submit)="updateBooking($event)">
+                        <select  class="form-control"
+                        [(ngModel)]="carRegId" name="carRegId">
+                        <option value="-1">Your Cars</option>
+                        <option *ngFor="let car of cars"> {{car.car_reg}}
+                        </option>
+                    </select>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="refresh()" class="btn btn-secondary"
+                    data-dismiss="modal">Cancel</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>

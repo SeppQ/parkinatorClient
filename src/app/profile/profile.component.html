@@ -1,5 +1,6 @@
 <app-header></app-header>
 <section>
+  <div class="input-group">
   <div class="container-fluid mh-100">
     <div class="row ">
       <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
@@ -15,9 +16,8 @@
                         <div class="container">
                           <div class="row">
                             <div class="col-12">
-
                               <label>Full Name</label>
-                              <input class="form-control" [(ngModel)]="fullname" name="fullname"
+                              <input class="form-control search-input" [(ngModel)]="fullname" name="fullname"
                                 placeholder="{{user.user_fullname}}">
                             </div>
                           </div>
@@ -26,11 +26,11 @@
                           <div class="row">
                             <div class="col-6">
                               <label>User Type</label>
-                              <input [readOnly]="true" class="form-control" placeholder="{{user.user_type}}">
+                              <input [readOnly]="true"  style="background-color:transparent;"  class="form-control search-input" placeholder="{{user.user_type}}">
                             </div>
                             <div class="col-6">
                               <label>Disabled Badge</label>
-                              <input [readOnly]="true" class="form-control" placeholder="{{user.has_disabled_badge}}">
+                              <input [readOnly]="true" class="form-control search-input" style="background-color:transparent;"  placeholder="{{user.has_disabled_badge}}">
                             </div>
                           </div>
                           <br>
@@ -38,7 +38,7 @@
                           <div class="row">
                             <div class="col-12">
                               <label>Recovery Question</label>
-                              <input [readOnly]="true" class="form-control" placeholder="{{user.question}}">
+                              <input [readOnly]="true" class="form-control search-input" style="background-color:transparent;"  placeholder="{{user.question}}">
                             </div>
                           </div>
                           <br>
@@ -46,12 +46,12 @@
                           <div class="row">
                             <div class="col-6">
                               <label>Email</label>
-                              <input [readOnly]="true" class="form-control" placeholder="{{user.email}}">
+                              <input [readOnly]="true" class="form-control search-input" style="background-color:transparent;"  placeholder="{{user.email}}">
                             </div>
                             <div class="col-6">
                               <label>Insert Profile Picture</label>
                               <input #imageInput id="file" type="file" accept="image/*" (change)="processFile($event)">
-                              <label for="file" class="btn-2">upload</label>
+                              <label for="file" class="btn-2 search-input">upload</label>
                             </div>
                           </div>
                           <br>
@@ -61,7 +61,7 @@
 
                             </div>
                             <div class="col-4">
-                              <button class="btn btn-block btn-success">Update</button>
+                              <button class="btn rounded btn-block btn-success search-input">Update</button>
                             </div>
                             <div class="col-4">
 
@@ -95,5 +95,6 @@
       </div>
     </div>
   </div>
+</div>
 </section>
 <app-footer></app-footer>

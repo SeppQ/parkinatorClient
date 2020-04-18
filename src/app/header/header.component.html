@@ -6,6 +6,7 @@
     <div class="container-fluid">
       <div class="row">
         <!-- sidebar -->
+        <!-- Admin -->
         <div *ngIf="isAdmin" class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
           <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Parkinator</a>
           <div class="bottom-border pb-3">
@@ -20,8 +21,10 @@
             <li class="nav-item"><a routerLink="/admin-car-page" [ngClass]="{'current' : rout.url == '/admin-car-page'}" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-car text-light fa-lg mr-3"></i>Manage Cars</a></li>
             <li class="nav-item"><a routerLink="/admin-cc-page" [ngClass]="{'current' : rout.url == '/admin-cc-page'}" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-exclamation-triangle text-light fa-lg mr-3"></i>Manage Clamping Companies</a></li>
             <li class="nav-item"><a routerLink="/lots" [ngClass]="{'current' : rout.url == '/lots'}" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-parking text-light fa-lg mr-3"></i>Add Lots and Zones</a></li>
+            <li class="nav-item"><a routerLink="/ccHome" [ngClass]="{'current' : rout.url == '/ccHome'}" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-parking text-light fa-lg mr-3"></i>Zones</a></li>
           </ul>
         </div>
+        <!-- Lot Manager -->
         <div *ngIf="isLotManager" class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
           <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Parkinator</a>
           <div class="bottom-border pb-3">
@@ -33,6 +36,21 @@
             <li class="nav-item"><a routerLink="/lots" [ngClass]="{'current' : rout.url == '/lots'}" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-parking text-light fa-lg mr-3"></i>Add Lots and Zones</a></li>
           </ul>
         </div>    
+
+        <!-- Clamping Employee-->
+        <div *ngIf="isClampingEmp" class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
+          <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Parkinator</a>
+          <div class="bottom-border pb-3">
+            <img src="../../assets/profile.png" width="50" class="rounded-circle mr-3">
+            <a href="/profile" class="text-white">{{username}}</a>
+          </div>
+
+          <ul class="navbar-nav flex-column mt-4">
+            <li class="nav-item"><a routerLink="/lots" [ngClass]="{'current' : rout.url == '/lots'}" class="nav-link text-white p-3 mb-2 sidebar-link"><i class="fas fa-parking text-light fa-lg mr-3"></i>Add Lots and Zones</a></li>
+          </ul>
+        </div>    
+        <!-- Regular -->
+        
         <div *ngIf="isRegular"  class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
           <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Parkinator</a>
           <div class="bottom-border pb-3">

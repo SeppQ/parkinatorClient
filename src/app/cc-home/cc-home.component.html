@@ -1,0 +1,109 @@
+<app-header></app-header>
+
+<section>
+    <div class="container-fluid mh-100">
+        <div class="row ">
+            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-xl-6 col-12 mb-4 mb-xl-0">
+                        <div id="back" class="bg-dark text-white p-4 rounded">
+                            <h4 class="mb-5">Search Car Reg</h4>
+                            <div id="booking" class="section">
+                                <div class="section-center">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control search-input"
+                                                    placeholder="Search Car Regs" [(ngModel)]="searchTerm3"
+                                                    name="searchTerm2">
+                                            </div>
+                                            <div *ngIf="checkmsg" class="container-fluid alert alert-danger">
+                                                {{msg.message}}
+                                            </div>
+                                            <div *ngIf="checkreg"
+                                                style="height:600px;width:750px;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                                                <div *ngFor="let bd of bds | carRegFilter:searchTerm3">
+                                                    <div class="container-fluid bg-white text-dark rounded">
+
+                                                        <div class="row py-3 mb-4 task-border align-items-center">
+                                                            <div class="col-sm-9 col-8">
+                                                                <p>Lot :{{bd.parking_name}} Zone : {{bd.zone_name}} Car
+                                                                    Reg : {{bd.car_reg}} Customer Name : {{bd.fullname}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-12 mb-4 mb-xl-0">
+                        <div id="back" class="bg-dark text-white p-4 rounded">
+                            <h4 class="mb-5">Search Car Reg For A Zone</h4>
+                            <div id="booking" class="section">
+                                <div class="section-center">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control search-input"
+                                                    placeholder="Search Parking Zones" [(ngModel)]="searchTerm"
+                                                    name="searchTerm">
+                                            </div>
+
+                                            <div
+                                                style="height:200px;width:750px;border:1px solid transparent;font:16px Arial, Serif;overflow:auto; cursor:pointer">
+                                                <div (click)="showCarReg(zone.zone_id ,zone.zone_name)"
+                                                    *ngFor="let zone of zone | zoneFilter:searchTerm">
+                                                    <div class="container-fluid bg-white text-dark rounded">
+
+                                                        <div class="row py-3 mb-4 task-border align-items-center">
+                                                            <div class="col-sm-9 col-8">
+                                                                <h4>{{zone.zone_name}}</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="checkStatus" class="container-fluid alert alert-danger">
+                                                {{msg.message}}
+                                            </div>
+                                            <div *ngIf="checkStatus2">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control search-input"
+                                                        placeholder="Search Car Regs " [(ngModel)]="searchTerm2"
+                                                        name="searchTerm2">
+                                                </div>
+                                                <div *ngIf="car!=[]">
+                                                    <div
+                                                        style="height:300px;width:550px;border:1px solid transparent;font:16px Arial, Serif;overflow:auto; ">
+                                                        <div *ngFor="let car of car | carRegFilter:searchTerm2">
+                                                            <div class="container-fluid bg-white text-dark rounded">
+
+                                                                <div
+                                                                    class="row py-3 mb-4 task-border align-items-center">
+                                                                    <div class="col-sm-9 col-8">
+                                                                        <h4>{{car.car_reg}}</h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

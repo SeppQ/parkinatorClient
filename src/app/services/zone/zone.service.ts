@@ -12,6 +12,7 @@ export class ZoneService {
   constructor(private auth : AuthenticationService, private http: HttpClient) { }
   zoneUrl: string = this.auth.url + "zone/getZones/";
   allZoneUrl : string = this.auth.url + "zone/";
+  
   jsonId : string;
   addZone(zone : Zone){
     let jsonstr = JSON.stringify(zone);
@@ -25,4 +26,5 @@ export class ZoneService {
   getAllZones(): Observable<Zone[]>{
     return this.http.get<Zone[]>(this.allZoneUrl, this.auth.httpOptions);
   }  
+
 }

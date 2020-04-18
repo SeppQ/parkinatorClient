@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   isAdmin : boolean;
   isRegular : boolean;
   isLotManager : boolean;
+  isClampingEmp : boolean;
   username : string;
   constructor(private rout: Router) {}
   webPage : string;
@@ -46,6 +47,7 @@ export class HeaderComponent implements OnInit {
     this.isAdmin = (this.user.user_type == "admin");
     this.isRegular = (this.user.user_type == "regular");
     this.isLotManager = (this.user.user_type == "lotManager");
+    this.isClampingEmp = (this.user.user_type == "ClampEmp");
   }
 
 }

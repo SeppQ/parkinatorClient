@@ -28,7 +28,8 @@ export class LotComponent implements OnInit {
   zone : Zone[]=[];
   latitude:number;
   longitude:number;
-  
+  searchTerm : string;
+  lotSearchTerm : string;
   constructor(private auth: AuthenticationService, private rout: Router, private lotservice: LotsService, private zoneservice: ZoneService) { }
 
   ngOnInit() {
@@ -47,7 +48,7 @@ export class LotComponent implements OnInit {
     this.lot = (new Lots(1, this.lotName, 1));
     this.lotservice.addCarParkLot(this.lot).subscribe(data => {
       this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
-      window.alert(this.msg.statusCode + "  " + this.msg.message);
+      window.alert(this.msg.status_code + "  " + this.msg.message);
     })
 
   }
@@ -70,7 +71,7 @@ export class LotComponent implements OnInit {
     this.lot = (new Lots(lotid, " ", 1));
     this.lotservice.removeLot(this.lot).subscribe(data => {
       this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
-      window.alert(this.msg.statusCode + "  " + this.msg.message);
+      window.alert(this.msg.status_code + "  " + this.msg.message);
     })
     this.refresh();
 
@@ -80,7 +81,7 @@ export class LotComponent implements OnInit {
     this.zoneMaps = new Zone(1,this.zoneName,this.maxSpaces,false,this.lotid,this.maxDisabledSpaces,this.latitude,this.longitude);
     this.zoneservice.addZone(this.zoneMaps).subscribe(data =>{
       this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
-      window.alert(this.msg.statusCode + "  " + this.msg.message)
+      window.alert(this.msg.status_code + "  " + this.msg.message)
     })
     this.refresh();
   }

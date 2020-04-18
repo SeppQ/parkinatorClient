@@ -1,9 +1,27 @@
 <app-header></app-header>
-<div class="container">
-    <div class="row">
-      <app-admin-car-list (selectedCar)="setSelectedCar($event)"
-        class='col-6'></app-admin-car-list>
-      <app-admin-car-details [car]="selectedCar"
-        class='col-6'></app-admin-car-details>    
+<section>
+  <div class="container-fluid mh-100">
+    <div class="row ">
+      <div class="col-xl-10 col-xs-4  col-lg-9 col-md-8 ml-auto">
+        <div class="row mb-4 align-items-center">
+          <div class="col-xl-6 col-xs-4 col-12 mb-4 mb-xl-0">
+            <div id="back" class="bg-dark text-white p-4 rounded">
+              <div class="section-center">
+                <div class="container">
+                  <div class="row">
+                    <div class="container">
+                      <app-admin-car-list (selectedCar)="setSelectedCar($event)"></app-admin-car-list>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="back" class="col-xl-6 col-12">
+            <app-admin-car-details [car]="selectedCar"></app-admin-car-details>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
