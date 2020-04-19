@@ -10,7 +10,8 @@
         <div *ngIf="isAdmin" class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
           <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Parkinator</a>
           <div class="bottom-border pb-3">
-            <img src="../../assets/nopicture.png" width="50" class="rounded-circle mr-3">
+          <!--  <img src="../../assets/nopicture.png" width="50" class="rounded-circle mr-3">-->
+            <img src="{{userImage2}}" width="50" height="50" class="rounded-circle mr-3">
             <a href="/profile" class="text-white">{{username}}</a>
           </div>
 
@@ -28,7 +29,7 @@
         <div *ngIf="isLotManager" class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
           <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Parkinator</a>
           <div class="bottom-border pb-3">
-            <img src="../../assets/profile.png" width="50" class="rounded-circle mr-3">
+            <img src="{{userImage2}}" width="50" height="50"  class="rounded-circle mr-3">
             <a href="/profile" class="text-white">{{username}}</a>
           </div>
 
@@ -41,7 +42,7 @@
         <div *ngIf="isClampingEmp" class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
           <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Parkinator</a>
           <div class="bottom-border pb-3">
-            <img src="../../assets/profile.png" width="50" class="rounded-circle mr-3">
+            <img src="{{userImage2}}" width="50" height="50"  class="rounded-circle mr-3">
             <a href="/profile" class="text-white">{{username}}</a>
           </div>
 
@@ -56,7 +57,7 @@
         <div *ngIf="isRegular"  class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
           <a href="#" class="navbar-brand text-white d-block mx-auto text-center py-3 mb-4 bottom-border">Parkinator</a>
           <div class="bottom-border pb-3">
-            <img src="../../assets/profile.png" width="50" class="rounded-circle mr-3">
+            <img src="{{userImage2}}" width="50" height="50"  class="rounded-circle mr-3">
             <a href="/profile" class="text-white">{{username}}</a>
           </div>
 
