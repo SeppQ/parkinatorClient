@@ -30,6 +30,8 @@ export class LotComponent implements OnInit {
   longitude:number;
   searchTerm : string;
   lotSearchTerm : string;
+  newZoneName : string;
+  updateZoneId : number;
   constructor(private auth: AuthenticationService, private rout: Router, private lotservice: LotsService, private zoneservice: ZoneService) { }
 
   ngOnInit() {
@@ -90,5 +92,21 @@ export class LotComponent implements OnInit {
     console.log($event.coords.lng);
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
+  }
+  removeZone(zoneid : number){
+    let zone = new Zone(zoneid,"",0,false,0,0,0,0,);
+    this.zoneservice.removeZone(zone).subscribe(data => {
+      this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
+      this.refresh();
+    })
+  }
+  setZoneId(id :number){
+    this.updateZoneId = id;
+  }
+  updateZoneName(){
+    let zone = new Zone(this.updateZoneId,this.newZoneName,0,false,0,0,0,0,);
+    this.zoneservice.updateZone(zone).subscribe(data =>{
+      this.refresh();
+    })
   }
 }

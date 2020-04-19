@@ -12,7 +12,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="container">
-                                                <form (submit)="addBooking($event)">
+                                               <!-- <form (submit)="addBooking($event)">-->
+                                                   <form>
                                                     <div class="row ">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
@@ -70,9 +71,10 @@
 
 
                                                     <div class="row">
-                                                        <button [disabled]="zoneSets" class="btn btn-block">Add
-                                                            Booking</button>
+                                                        <button [disabled]="zoneSets" class="btn btn-block"  data-toggle="tooltip" title="edit" data-html="true" data-toggle="modal"
+                                                        data-target="#paypal"  data-placement="top">Check Booking / Pay</button>
                                                     </div>
+                                                  
                                                 </form>
                                                 <br>
                                                 <br>
@@ -141,6 +143,29 @@
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="refresh()" class="btn btn-secondary"
+                    data-dismiss="modal">Cancel</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="paypal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Choose Payment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span area-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div #paypal></div>
 
             </div>
             <div class="modal-footer">

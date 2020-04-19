@@ -12,6 +12,7 @@ export class ZoneService {
   constructor(private auth : AuthenticationService, private http: HttpClient) { }
   zoneUrl: string = this.auth.url + "zone/getZones/";
   allZoneUrl : string = this.auth.url + "zone/";
+  removeZoneUrl : string = this.auth.url + "zone/removeZone/";
   
   jsonId : string;
   addZone(zone : Zone){
@@ -25,6 +26,14 @@ export class ZoneService {
   }  
   getAllZones(): Observable<Zone[]>{
     return this.http.get<Zone[]>(this.allZoneUrl, this.auth.httpOptions);
+  }  
+  removeZone(zone : Zone){
+    let jsonstr = JSON.stringify(zone);
+    return this.http.post(this.removeZoneUrl,jsonstr, this.auth.httpOptions);
+  }
+  updateZone(zone : Zone){
+    let jsonstr = JSON.stringify(zone);
+    return this.http.put(this.allZoneUrl,jsonstr, this.auth.httpOptions);
   }  
 
 }

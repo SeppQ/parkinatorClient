@@ -9,7 +9,7 @@ data-target="#newCcModal"
 
 
 <!-- Modal -->
-<div class="modal fade" id="newCcModal" role="dialog" aria-hidden="true">
+<div class="modal fade text-dark" id="newCcModal" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,7 +21,12 @@ data-target="#newCcModal"
             <div class="modal-body">
                 <div class="form-group">
                     <label>Cc Name</label>
-                    <input class="form-control" [(ngModel)]=cc.cc_name/>
+                    <input required #cc="ngModel" class="form-control" [(ngModel)]=cc.cc_name/>
+                    <div *ngIf="cc.invalid && (cc.dirty || cc.touched)" class="alert alert-danger">
+                        <div *ngIf="cc.errors.required">
+                            Name  is required.
+                        </div>
+                    </div>                       
                 </div>    
             </div>
             <div class="modal-footer">

@@ -9,7 +9,7 @@ data-target="#newUserModal"
 
 
 <!-- Modal -->
-<div class="modal fade" id="newUserModal" role="dialog" aria-hidden="true">
+<div class="modal fade text-dark" id="newUserModal" role="dialog" aria-hidden="true">
     <div  class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,38 +21,97 @@ data-target="#newUserModal"
             <div class="modal-body text-dark">
                 <div class="form-group">
                     <label>User Full Name</label>
-                    <input class="form-control" [(ngModel)]=user.user_fullname/>
+                    <input  #name0="ngModel" required minlength="4"  class="form-control" [(ngModel)]=user.user_fullname/>
+                    
+                    <div *ngIf="name0.invalid && (name0.dirty || name0.touched)" class="alert alert-danger">
+                        <div *ngIf="name0.errors.required">
+                            Name is required.
+                        </div>
+                        <div *ngIf="name0.errors.minlength">
+                            Name must be at least 4 characters long.
+                        </div>
+                    </div>                    
                 </div>
+
+
+
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input class="form-control" [(ngModel)]=user.email/>
+                    <input required type="email" email="true"   #name2="ngModel" class="form-control" [(ngModel)]=user.email/>
+                    <div *ngIf="name2.invalid && (name2.dirty || name2.touched)" class="alert alert-danger">
+                        <div *ngIf="name2.errors.required">
+                            Email is required.
+                        </div>
+                        <div *ngIf="name2.errors.email">
+                            Must be an email.
+                        </div>
+                    </div>                    
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input class="form-control" type="password" [(ngModel)]=user.hash/>
+                    <input class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" maxlength="30" required type="password"  #name3="ngModel" [(ngModel)]=user.hash/>
+
+                    <div *ngIf="name3.invalid && (name3.dirty || name3.touched)" class="alert alert-danger">
+                        <div *ngIf="name3.errors.required">
+                            Password is required.
+                        </div>
+                        <div *ngIf="name3.errors.pattern">
+                            Must contain at least one  <br>
+                            number and one uppercase<br>
+                            and lowercase letter, <br>
+                            and at least 7 or more characters<br>
+                        </div>     
+                        <div *ngIf="name3.errors.maxlength">
+                            Max length 30 characters.
+                        </div>                    
+                    </div>                    
                 </div>
                 
                 <div class="form-group">
                     <label>User Type</label>
-                    <input class="form-control" [(ngModel)]=user.user_type/>
+                    <input class="form-control" required #type="ngModel" [(ngModel)]=user.user_type/>
+                    <div *ngIf="type.invalid && (type.dirty || type.touched)" class="alert alert-danger">
+                        <div *ngIf="type.errors.required">
+                            User Type is required.
+                        </div>
+                    </div>        
+
                 </div>
                 <div class="form-group">
                     <label>Security Question</label>
-                    <input class="form-control" [(ngModel)]=user.question/>
+                    <input class="form-control"  required #rq="ngModel" [(ngModel)]=user.question/>
+
+                    <div *ngIf="rq.invalid && (rq.dirty || rq.touched)" class="alert alert-danger">
+                        <div *ngIf="rq.errors.required">
+                            Recovery Qeustion is required.
+                        </div>
+                    </div>     
                 </div>
                 <div class="form-group">
                     <label>User Question Answer</label>
-                    <input class="form-control" [(ngModel)]=user.answer_hash/>
+                    <input class="form-control"  required #ra="ngModel" [(ngModel)]=user.answer_hash/>
+
+                    <div *ngIf="ra.invalid && (ra.dirty || ra.touched)" class="alert alert-danger">
+                        <div *ngIf="ra.errors.required">
+                            Recovery Answer is required.
+                        </div>
+                    </div>   
                 </div>
                 <div class="form-group">
                     <label>Has A Disability Badge</label>
-                    <input class="form-control" [(ngModel)]=user.has_disabled_badge/>
+                    <input class="form-control"  required #disabled="ngModel" [(ngModel)]=user.has_disabled_badge/>
+
+                    <div *ngIf="disabled.invalid && (disabled.dirty || disabled.touched)" class="alert alert-danger">
+                        <div *ngIf="disabled.errors.required">
+                            Recovery Answer is required.
+                        </div>
+                    </div>   
                 </div>
                 
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" (click)="addNew()" data-dismiss="modal">Add</button>
+                    <button   type="button" class="btn btn-primary" (click)="addNew()" data-dismiss="modal">Add</button>
             </div>
         </div>
     </div>

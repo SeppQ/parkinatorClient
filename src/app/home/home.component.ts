@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { LotsService } from '../services/lots/lots.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication/authentication.service';
@@ -13,13 +13,15 @@ import { ParkedCars } from '../DTO/ParkedCars';
 import { ServerMsg } from '../DTO/ServerMsg';
 import { BookingsService } from '../services/bookings/bookings.service';
 import { formatDate } from '@angular/common';
+import { async } from '@angular/core/testing';
+declare var paypal;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
   constructor(private auth: AuthenticationService, private rout: Router, private lotservice: LotsService, private zoneservice: ZoneService, private cdservice: UserCarDataService, private bookingsService: BookingsService) { }
   lots: Lots[] = [];
   zones: Zone[] = [];
@@ -34,22 +36,39 @@ export class HomeComponent implements OnInit {
   bookTo: string;
   zoneId: number;
   carId: number;
-  parkedCars: ParkedCars[] =  null;
+  parkedCars: ParkedCars[] = null;
   butDisabled: boolean = true;
   myDate = new Date();
   minDate: string;
-  rl:number = 0;
-  latitude:number;
-  longitude:number;
-  updateCar_zone_id : number;
-  updateCar_user_id : number;
+  rl: number = 0;
+  latitude: number;
+  longitude: number;
+  updateCar_zone_id: number;
+  updateCar_user_id: number;
   updateCar_car_id: number;
+  paidFor : boolean;
   ngOnInit() {
 
 
     this.onPageLoad();
 
-
+    paypal.Buttons({
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: [{
+            description: "Booking for Zone",
+            amount: {
+              value: 5.00
+            }
+          }
+          ]
+        })
+      },
+      onApprove: async (data, actions) =>{
+        const order = await actions.order.capture();
+        this.addBooking();
+      },
+    }).render(this.paypalElement.nativeElement);
   }
 
   addBooking() {
@@ -91,19 +110,19 @@ export class HomeComponent implements OnInit {
       this.cars = data;
     });
   }
-  setCo(name : string){
+  setCo(name: string) {
     this.zones.forEach(element => {
       if (element.zone_name == name) {
         this.latitude = element.alt;
         this.longitude = element.lng;
 
       }
-    });   
+    });
   }
   setLot(id: string) {
     this.getzoneById(id);
   }
-  getzoneById(id: string){
+  getzoneById(id: string) {
     this.lotservice.getCarParkLots().subscribe(data => {
       this.lots = data;
       data.forEach(element => {
@@ -111,23 +130,23 @@ export class HomeComponent implements OnInit {
           this.zoneSets = false;
           this.zoneservice.getZones(element.lot_id.toString()).subscribe(data => {
             this.zones = data;
-        });
+          });
         }
       });
 
     });
   }
 
-  deleteBooking(booking : ParkedCars){
-    this.bookingsService.deleteBookings(booking).subscribe(data =>{
+  deleteBooking(booking: ParkedCars) {
+    this.bookingsService.deleteBookings(booking).subscribe(data => {
     })
   }
 
-  setDetails(p : ParkedCars){
+  setDetails(p: ParkedCars) {
     this.updateCar_user_id = p.user_id;
-    this.updateCar_zone_id  = p.zone_id;
+    this.updateCar_zone_id = p.zone_id;
   }
-  updateBooking(){
+  updateBooking() {
 
     this.cars.forEach(element => {
       if (element.car_reg == this.carRegId) {
@@ -135,8 +154,8 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    this.bookingsService.updateBookings(this.updateCar_user_id,this.updateCar_zone_id,this.updateCar_car_id).subscribe(data =>{
+    this.bookingsService.updateBookings(this.updateCar_user_id, this.updateCar_zone_id, this.updateCar_car_id).subscribe(data => {
       window.alert(data);
     })
-  }  
+  }
 }
