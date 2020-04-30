@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
         if (this.rout.url == "/admin-user-page" || this.rout.url == "/admin-car-page" || this.rout.url == "/admin-cc-page" || this.rout.url == "/lots") {
           this.rout.navigate(['/home'])
         }
-      }
+      } 
     } else {
       this.rout.navigate(['/'])
     }
@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
     this.isAdmin = (this.user.user_type == "admin");
     this.isRegular = (this.user.user_type == "regular");
     this.isLotManager = (this.user.user_type == "lotManager");
-    this.isClampingEmp = (this.user.user_type == "ClampEmp");
+    this.isClampingEmp = (this.user.user_type == "clamping");
   }
   getImage() {
     let image = new UserImage(this.user.email, "");
@@ -67,7 +67,7 @@ export class HeaderComponent implements OnInit {
         sessionStorage.setItem('image', this.userImage.image);
         this.userImage2 = sessionStorage.getItem('image');
       } else {
-        
+
         sessionStorage.setItem('image', "../../assets/nopicture.png");
         this.userImage2 = sessionStorage.getItem('image');
 

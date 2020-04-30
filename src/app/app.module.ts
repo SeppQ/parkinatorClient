@@ -48,6 +48,8 @@ import {  ZoneFilterPipe } from 'src/shared/zone-filter.pipe';
 import { LotFilterPipe } from 'src/shared/lot-filter.pipe';
 import { CcHomeComponent } from './cc-home/cc-home.component';
 import { CarRegFilterPipe } from 'src/shared/carReg-filter.pipe';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { SupportComponent } from './support/support.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +91,9 @@ import { CarRegFilterPipe } from 'src/shared/carReg-filter.pipe';
     ZoneFilterPipe,
     LotFilterPipe,
     CcHomeComponent,
-    CarRegFilterPipe
+    CarRegFilterPipe,
+    AdminHomeComponent,
+    SupportComponent
   ],
   imports: [
     BrowserModule,
@@ -156,7 +160,18 @@ import { CarRegFilterPipe } from 'src/shared/carReg-filter.pipe';
         path: 'ccHome',
         component: CcHomeComponent,
         canActivate: [AuthenticationGuard]
+      },
+      {
+        path: 'support',
+        component: SupportComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: 'admin-dashboard',
+        component: AdminHomeComponent,
+        canActivate: [AuthenticationGuard]
       }
+      
     ]),
   ],
   schemas: [ NO_ERRORS_SCHEMA ],

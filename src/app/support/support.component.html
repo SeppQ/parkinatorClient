@@ -1,0 +1,31 @@
+<app-header></app-header>
+<section>
+    <div class="container-fluid mh-100">
+        <div class="row ">
+            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+                <div class="row mb-4 align-items-center">
+                    <div class="col-xl-6 col-12 mb-4 mb-xl-0">
+                        <div id="back" class="bg-dark text-white p-4 rounded">
+                            <h4 class="mb-5">Send a Ticket</h4>
+                            <form (submit)="sendTicket()">
+                                <label>Title </label><br>
+                                <input class="form-control" type="text"  [(ngModel)]="title" name="title" >
+                                <br>
+                                <label>Your Ticket <span class="text-danger float-right"> Max 500</span></label><br>
+                                <textarea class="form-control" id="exampleFormControlTextarea1"  [(ngModel)]="message" name="message" rows="15"></textarea>
+                                <br>
+                                <button class="btn btn-block btn-outline-success float-right">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="back" class="col-xl-6 col-12">
+                        <h4 class="mb-5 text-white p-4 rounded">Q/A</h4>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import { Login } from '../DTO/Login';
 import { LoginDataService } from 'src/app/services/login/login-data.service';
 import { UserDetailsDataService } from '../services/user/user-details-data.service';
+import { User } from '../DTO/User';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   username : string;
   hash : string;
   checkbox : boolean;
+  user : User;
   
   constructor(
     private auth :AuthenticationService, 
@@ -51,7 +53,12 @@ export class LoginComponent implements OnInit {
         this.uddService.getUserDetails(this.login).subscribe(data => {
           
           sessionStorage.setItem('userDetail',JSON.stringify(data));
+          this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
+          if(this.user.user_type == "admin"){
+            this.rout.navigate(['/admin-dashboard'])
+          }else{
           this.rout.navigate(['/home']);
+          }
         })
         
       }
