@@ -23,6 +23,7 @@ export class NewCarComponent implements OnInit {
 
   addNew(){
     this.cdService.newCar(this.car);
+    alert("Please refresh the page using the f5 key to confirm changes");
     //window.location.reload();
   }
 
