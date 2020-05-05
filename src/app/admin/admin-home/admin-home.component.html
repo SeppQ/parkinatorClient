@@ -17,8 +17,18 @@
                                                     <button class="btn btn-link" data-toggle="collapse"
                                                         [attr.data-target]="'#' +  ticket.message_id"
                                                         aria-expanded="true" aria-controls="collapseOne">
-                                                        {{ticket.title}} {{ticket.date}} {{ticket.user_id}}                                             
+                                                       <strong> {{ticket.title}} {{ticket.date}} {{ticket.user_id}}    </strong>    
+                                                                                         
                                                     </button>
+                                                    <div class="col-1 text-dark">
+                                                        
+                                                    </div> 
+                                                    <div class="col-6 text-dark">
+                                                        <select class="form-control"  (change)="updateStatus(ticket.message_id)" name="statusCode" [(ngModel)]="statusCode" >
+                                                            <option [ngValue]="undefined" hidden >--Current Status : {{ticket.status}}--</option>
+                                                            <option  *ngFor="let stat of status" >{{stat}}</option>
+                                                        </select>
+                                                    </div> 
                                                 </h5>
                                             </div>
                                             <div id="{{ticket.message_id}}" class="collapse hidden"

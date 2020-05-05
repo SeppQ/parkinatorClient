@@ -13,6 +13,12 @@ export class AdminHomeComponent implements OnInit {
   constructor(private suppService: SupportService) { }
   tickets: Support[];
   msg: ServerMsg;
+  statusCode : string ;
+  status : string[] = [
+    "Sent",
+    "In Progress",
+    "Done"
+  ];
   ngOnInit() {
     this.getAllTicekts();
     
@@ -25,9 +31,15 @@ export class AdminHomeComponent implements OnInit {
     })
   }
   removeTicket(id : number){
-    let sup = new Support(id,"","","",0);
+    let sup = new Support(id,"","","",0,"");
     this.suppService.removeTickets(sup).subscribe(data =>{
       window.location.reload();
     })
   }  
+  updateStatus(id : number){
+    let sup = new Support(id,"","","2020-05-05",0,this.statusCode);
+    this.suppService.updateTicketStatus(sup).subscribe(data =>{
+      window.location.reload();
+    })
+  }
 }
