@@ -29,7 +29,7 @@ export class AuthenticationService {
   get isLoggedIn(){
     return JSON.parse(sessionStorage.getItem('loggedIn') || this.loggedInStatus.toString());
   }
-  url : string = "http://localhost:8080/parkinator/webresources/";
+  url : string = "http://localhost:33986/parkinator/webresources/";
   
 
 
