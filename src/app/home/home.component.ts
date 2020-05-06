@@ -14,6 +14,8 @@ import { ServerMsg } from '../DTO/ServerMsg';
 import { BookingsService } from '../services/bookings/bookings.service';
 import { formatDate } from '@angular/common';
 import { async } from '@angular/core/testing';
+import { PaymentLogs } from '../DTO/PaymentLogs';
+import { PaymentLogsService } from '../services/PaymentLogs/payment-logs.service';
 declare var paypal;
 @Component({
   selector: 'app-home',
@@ -22,7 +24,7 @@ declare var paypal;
 })
 export class HomeComponent implements OnInit {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
-  constructor(private auth: AuthenticationService, private rout: Router, private lotservice: LotsService, private zoneservice: ZoneService, private cdservice: UserCarDataService, private bookingsService: BookingsService) { }
+  constructor(private auth: AuthenticationService, private rout: Router, private lotservice: LotsService, private zoneservice: ZoneService, private cdservice: UserCarDataService, private bookingsService: BookingsService , private paymentlogsService : PaymentLogsService) { }
   lots: Lots[] = [];
   zones: Zone[] = [];
   cars: Car[] = [];
@@ -47,6 +49,7 @@ export class HomeComponent implements OnInit {
   updateCar_user_id: number;
   updateCar_car_id: number;
   paidFor : boolean;
+  paymentLogs : PaymentLogs;
   ngOnInit() {
 
 
@@ -66,6 +69,10 @@ export class HomeComponent implements OnInit {
       },
       onApprove: async (data, actions) =>{
         const order = await actions.order.capture();
+        
+        this.paymentLogs = <PaymentLogs>(order);
+        let paymentLog = new PaymentLogs(this.paymentLogs.create_time,this.paymentLogs.id,this.paymentLogs.intent,this.paymentLogs.status);
+        this.RecordPaymentLogs(paymentLog);
         this.addBooking();
       },
     }).render(this.paypalElement.nativeElement);
@@ -156,6 +163,11 @@ export class HomeComponent implements OnInit {
 
     this.bookingsService.updateBookings(this.updateCar_user_id, this.updateCar_zone_id, this.updateCar_car_id).subscribe(data => {
       window.alert(data);
+    })
+  }
+  RecordPaymentLogs(pl : PaymentLogs){
+    this.paymentlogsService.recordPaymentLogs(pl).subscribe( data => {
+
     })
   }
 }

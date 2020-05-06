@@ -1,5 +1,89 @@
 <app-header></app-header>
 <section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+                <div class="row pt-md-5 mt-md-3 mb-5">
+                    <div class="col-xl-3 col-sm-6 p-2">
+                        <div class="card card-common">
+                            <div id="bg" class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <i class="fas fa-parking fa-3x text-primary"></i>
+                                    <div class="text-right text-secondary">
+                                        <h5>Zones Registered</h5>
+                                        <h3>{{zoneCount}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-secondary">
+                                <div (click)="getAllZonesCount()" style="cursor: pointer;">
+                                <i class="fas fa-sync mr-3"></i>
+                                <span>Updated Now</span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-2">
+                        <div class="card card-common">
+                            <div id="bg" class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <i class="fas fa-money-bill-alt fa-3x text-success"></i>
+                                    <div class="text-right text-secondary">
+                                        <h5>Active Booking Sales</h5>
+                                        <h3>€{{salesFromCurrentBookings}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-secondary">
+                                <div (click)="getSalesFromCurrentBookings()" style="cursor: pointer;">
+                                <i class="fas fa-sync mr-3"></i>
+                                <span>Updated Now</span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-2">
+                        <div class="card card-common">
+                            <div id="bg" class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <i class="fas fa-users fa-3x text-info"></i>
+                                    <div class="text-right text-secondary">
+                                        <h5>Users</h5>
+                                        <h3>{{UserCount}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-secondary">
+                                <div (click)="getUserCount()" style="cursor: pointer;">
+                                    <i class="fas fa-sync mr-3"></i>
+                                    <span>Updated Now</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-2">
+                        <div class="card card-common">
+                            <div id="bg" class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <i class="fas fa-chart-line fa-3x text-danger"></i>
+                                    <div class="text-right text-secondary">
+                                        <h5>Active Bookings</h5>
+                                        <h3>{{BookingCount}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-secondary">
+                                <div (click)="getBookingCount()" style="cursor: pointer;">
+                                <i class="fas fa-sync mr-3"></i>
+                                <span>Updated Now</span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid mh-100">
         <div class="row ">
             <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
@@ -8,49 +92,74 @@
                         <div id="back" class="bg-dark text-white p-4 rounded">
                             <h4 class="mb-5">Tickets</h4>
                             <div ng-if="tickets!=[]">
-                                <div id="accordion" >
-                                    <div *ngFor="let ticket of tickets">
+                                <div
+                                    style="height:570px;width:100%;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                                    <div id="accordion">
+                                        <div *ngFor="let ticket of tickets">
 
-                                        <div class="card" >
-                                            <div class="card-header"  id="headingOne">
-                                                <h5 class="mb-0">
-                                                    <button class="btn btn-link" data-toggle="collapse"
-                                                        [attr.data-target]="'#' +  ticket.message_id"
-                                                        aria-expanded="true" aria-controls="collapseOne">
-                                                       <strong> {{ticket.title}} {{ticket.date}} {{ticket.user_id}}    </strong>    
-                                                                                         
-                                                    </button>
-                                                    <div class="col-1 text-dark">
-                                                        
-                                                    </div> 
-                                                    <div class="col-6 text-dark">
-                                                        <select class="form-control"  (change)="updateStatus(ticket.message_id)" name="statusCode" [(ngModel)]="statusCode" >
-                                                            <option [ngValue]="undefined" hidden >--Current Status : {{ticket.status}}--</option>
-                                                            <option  *ngFor="let stat of status" >{{stat}}</option>
-                                                        </select>
-                                                    </div> 
-                                                </h5>
-                                            </div>
-                                            <div id="{{ticket.message_id}}" class="collapse hidden"
-                                                aria-labelledby="headingOne" data-parent="#accordion">
-                                                <div class="card-body text-dark">
-                                                    {{ticket.message}}
-                                                    <a (click)="removeTicket(ticket.message_id)" data-toggle="tooltip"
-                                                        title="delete" data-html="true" data-placement="top"><i
-                                                            class="fas fa-trash-alt fa-lg text-danger float-right"></i></a>
+                                            <div class="card">
+                                                <div class="card-header col-sm25 col-12" id="headingOne">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link" data-toggle="collapse"
+                                                            [attr.data-target]="'#' +  ticket.message_id"
+                                                            aria-expanded="true" aria-controls="collapseOne">
+                                                            <strong> {{ticket.title}} {{ticket.date}} {{ticket.user_id}}
+                                                            </strong>
+
+                                                        </button>
+                                                        <div class="col-6 text-dark float-right">
+                                                            <select class="form-control"
+                                                                (change)="updateStatus(ticket.message_id)"
+                                                                name="statusCode" [(ngModel)]="statusCode">
+                                                                <option [ngValue]="undefined" hidden>--Current Status :
+                                                                    {{ticket.status}}--</option>
+                                                                <option *ngFor="let stat of status">{{stat}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </h5>
+                                                </div>
+                                                <div id="{{ticket.message_id}}" class="collapse hidden"
+                                                    aria-labelledby="headingOne" data-parent="#accordion">
+                                                    <div class="card-body text-dark">
+                                                        {{ticket.message}}
+                                                        <a (click)="removeTicket(ticket.message_id)"
+                                                            data-toggle="tooltip" title="delete" data-html="true"
+                                                            data-placement="top"><i
+                                                                class="fas fa-trash-alt fa-lg text-danger float-right"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
 
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div id="back" class="col-xl-6 col-12">
-                        <h4 class="mb-5 text-white p-4 rounded">Soon</h4>
+                        <h4 class="mb-5 text-white p-4 rounded">Payment Logs</h4>
+                        <div ng-if="pl!=[]">
+                            <div
+                                style="height:570px;width:100%;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                                <div *ngFor="let logs of pl">
 
+
+                                    <div class="container-fluid bg-white rounded">
+
+                                        <div class="row py-3 mb-4 task-border align-items-center">
+                                            <div class="col-sm10 col-6">
+                                                <strong>ID : {{logs.create_time}} <span
+                                                        class="text-success">{{logs.status}}</span></strong>
+                                            </div>
+                                            <div class="col-4">
+                                                {{logs.id}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
