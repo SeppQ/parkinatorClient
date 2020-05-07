@@ -8,7 +8,7 @@ body {
   }
   #bg2{
     width: 80vh;
-    background: url(../src/assets/fade.jpg);
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9)), url(../src/assets/carpark.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 5px 7px 25px #999;    
@@ -16,8 +16,15 @@ body {
     margin: auto;
     padding: 10px;
   }
+  #bg{
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9)), url(../src/assets/carpark.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 5px 7px 25px #999;    
+  }  
   #back{
-    height: 80vh;
+    height: 100%;
     background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9)), url(../src/assets/carpark.jpg);
     background-position: center;
     background-repeat: no-repeat;

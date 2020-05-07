@@ -91,6 +91,8 @@
                     </div>
                     <div id="back" class="col-xl-6 col-12">
                         <h4 class="mb-5 text-white p-4 rounded">Your Bookings</h4>
+                        <div
+                        style="height:570px;width:100%;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
                         <div ng-if="parkedCars!=[]">
                             <div *ngFor="let parkedCar of parkedCars">
                                 <div class="container-fluid bg-white rounded">
@@ -114,6 +116,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

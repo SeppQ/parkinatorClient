@@ -1,4 +1,4 @@
-<div id="bg2" class="justify-content-md-center text-center  rounded">
+<div id="bg2" class="justify-content-md-center text-center text-light  rounded">
     <div class="row justify-content-center pt-2">
         <form class="form-signin" (submit)="loginUser($event)" #validation="ngForm">
             <img class="mb-4 rounded-circle" src="../../assets/parkinator.png" alt="" width="200" height="200">
@@ -12,14 +12,14 @@
                     Must be an email.
                 </div>                
             </div>          
- 
+            <br>
             <input class="form-control" type="password"  placeholder="password" [(ngModel)] = "hash" name="hash" required #name0="ngModel">
             <div *ngIf="name0.invalid && (name0.dirty || name0.touched)" class="alert alert-danger">
                 <div *ngIf="name0.errors.required">
                     Password is required.
                 </div>
             </div>     
-     
+            <br>
             <div class="checkbox mb-3">
                 <label>
                     <input type="checkbox" [(ngModel)]="checkbox" name="checkbox" value="remember-me"> Remember me

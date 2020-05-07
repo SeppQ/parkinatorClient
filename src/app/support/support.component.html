@@ -8,22 +8,67 @@
                         <div id="back" class="bg-dark text-white p-4 rounded">
                             <h4 class="mb-5">Send a Ticket</h4>
                             <form (submit)="sendTicket()">
+
                                 <label>Title </label><br>
-                                <input class="form-control" type="text"  [(ngModel)]="title" name="title" >
+                                <input class="form-control" type="text" [(ngModel)]="title" name="title">
                                 <br>
                                 <label>Your Ticket <span class="text-danger float-right"> Max 500</span></label><br>
-                                <textarea class="form-control" id="exampleFormControlTextarea1"  [(ngModel)]="message" name="message" rows="15"></textarea>
+                                <textarea class="form-control" maxlength="500" id="exampleFormControlTextarea1" [(ngModel)]="message"
+                                    name="message" rows="15"></textarea>
                                 <br>
                                 <button class="btn btn-block btn-outline-success float-right">Send</button>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                
                             </form>
                         </div>
                     </div>
-                    <div id="back" class="col-xl-6 col-12">
+                    <div id="back" class="col-xl-6 col-12 rounded">
+                        <h4 class="mb-5 text-white p-4 rounded">Your Tickets</h4>
+                        <div
+                        style="height:310px;width:100%;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                        <div *ngFor="let ticket of tickets ">
+                        
+                            <div class="container-fluid bg-white rounded">
+                                <div class="row py-3 mb-4 task-border align-items-center">
+                                    <div class="col-sm-9 col-8">
+                                        <strong>{{ticket.title}} </strong>
+                                    </div>
+                                    <div class="col-3">
+                                        <strong>{{ticket.date}}</strong>
+                                    </div>
+                                    <div class="col-2">
+                                        <div *ngIf="ticket.status == 'Sent'">
+                                            <strong><span class="text-primary">{{ticket.status}} </span></strong>
+                                        </div>
+                                        <div *ngIf="ticket.status == 'In Progress'">
+                                            <strong> <span class="text-warning">{{ticket.status}} </span></strong>
+                                        </div>
+                                        <div *ngIf="ticket.status == 'Done'">
+                                            <strong><span class="text-success">{{ticket.status}} </span></strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
                         <h4 class="mb-5 text-white p-4 rounded">Q/A</h4>
-
+                        <div
+                        style="height:190px;width:100%;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                        <div class="text-white">
+                            <p><strong> Qeustion 1</strong></p>
+                            <p>How to book a parking spot in a disabled spot</p>
+                            <p><strong>Answer 1</strong></p>
+                            <p>You need to send a ticket with your disabled badge serial code for comfirmation</p>
+                        </div>
                     </div>
+                    </div>
+
                 </div>
             </div>
+
         </div>
     </div>
 </section>

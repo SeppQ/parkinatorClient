@@ -25,6 +25,9 @@ export class BookingsService {
     let jsonstr = JSON.stringify(user);
     return this.http.post<ParkedCars[]>(this.displayBookingsUrl,jsonstr,this.auth.httpOptions);
   }
+  getAllBookings() : Observable<ParkedCars[]>{
+    return this.http.get<ParkedCars[]>(this.bookingsUrl,this.auth.httpOptions);
+  }  
   deleteBookings(booking : ParkedCars){
     let jsonstr = JSON.stringify(booking);
     return this.http.post(this.deleteBookingUrl,jsonstr,this.auth.httpOptions);
