@@ -16,9 +16,10 @@
                         <div class="container">
                           <div class="row">
                             <div class="col-12">
+                              <div class={{messageClass}}>{{messageText}}</div>
                               <label>Full Name</label>
                               <input class="form-control search-input" [(ngModel)]="fullname" name="fullname"
-                                placeholder="{{user.user_fullname}}">
+                                placeholder="{{user.user_fullname}}" (click)='updateNotice()'>
                             </div>
                           </div>
                           <br>
