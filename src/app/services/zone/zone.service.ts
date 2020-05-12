@@ -33,6 +33,7 @@ export class ZoneService {
   }
   updateZone(zone : Zone){
     let jsonstr = JSON.stringify(zone);
+    console.log(jsonstr);
     return this.http.put(this.allZoneUrl,jsonstr, this.auth.httpOptions);
   }  
 

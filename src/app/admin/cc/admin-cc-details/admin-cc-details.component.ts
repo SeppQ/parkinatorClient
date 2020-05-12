@@ -57,6 +57,7 @@ export class AdminCcDetailsComponent implements OnInit {
         }
       });
       this.cl.ccs = this.newCcs;
+      window.location.reload();
   }
 
 }

@@ -50,6 +50,8 @@ import { CcHomeComponent } from './cc-home/cc-home.component';
 import { CarRegFilterPipe } from 'src/shared/carReg-filter.pipe';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { SupportComponent } from './support/support.component';
+import { UserFilterPipe } from 'src/shared/user-filter.pipe';
+import { CcFilterPipe } from 'src/shared/cc-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +94,8 @@ import { SupportComponent } from './support/support.component';
     LotFilterPipe,
     CcHomeComponent,
     CarRegFilterPipe,
+    UserFilterPipe,
+    CcFilterPipe,
     AdminHomeComponent,
     SupportComponent
   ],

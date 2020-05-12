@@ -20,7 +20,7 @@ export class AdminNewUserComponent implements OnInit {
 
   addNew(){
     this.udService.createUser(this.user).subscribe();
-    //window.location.reload();
+    window.location.reload();
   }
 
   openNew(){

@@ -20,7 +20,7 @@ export class AdminNewCarComponent implements OnInit {
 
   addNew(){
     this.cdService.newCar(this.car);
-    //window.location.reload();
+    window.location.reload();
   }
 
   openNew(){

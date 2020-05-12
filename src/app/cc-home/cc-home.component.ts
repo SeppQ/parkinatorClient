@@ -32,7 +32,8 @@ export class CcHomeComponent implements OnInit {
   }
   getZones(){
     this.zoneservice.getAllZones().subscribe(data =>{
-      this.zone = data;
+      this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
+      this.zone = JSON.parse(this.msg.message);
     })
 
     this.ccService.getAllRegsFromZones().subscribe(data =>{

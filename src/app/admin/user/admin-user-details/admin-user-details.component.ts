@@ -58,6 +58,7 @@ export class AdminUserDetailsComponent implements OnInit {
         }
       });
       this.aulComp.users = this.newUsers;
+      window.location.reload();
   }
 
 }

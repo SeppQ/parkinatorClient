@@ -16,6 +16,7 @@ export class BookingsService {
   displayBookingsUrl: string = this.auth.url + "bookings/displayBookings/";
   deleteBookingUrl : string = this.auth.url+ "bookings/deleteBookings/";
   updateBookingUrl : string = this.auth.url+ "bookings";
+  checkBookingUrl : string = this.auth.url+ "bookings/checkBooking/";
   
   addBooking(pc: ParkedCars) {
     let jsonstr = JSON.stringify(pc);
@@ -35,5 +36,10 @@ export class BookingsService {
   updateBookings(userid : number , zoneid : number , carid : number){
     let jsonstr = '{"zone_id":' + zoneid + ',"user_id":' + userid + ',"book_from":"2020-04-24","book_to":"2020-04-24","car_id":'+ carid +'}';
     return this.http.put(this.updateBookingUrl,jsonstr,this.auth.httpOptions);
+  }
+
+  checkBooking(pc : ParkedCars){
+    let jsonstr = JSON.stringify(pc);
+    return this.http.post(this.checkBookingUrl,jsonstr,this.auth.httpOptions);
   }
 }

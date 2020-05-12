@@ -59,7 +59,7 @@ export class CarDetailsComponent implements OnInit {
         }
       });
       this.cl.cars = this.newCars;
-      alert("Please refresh the page using the f5 key to confirm changes");
+      window.location.reload();
 
   }
 }

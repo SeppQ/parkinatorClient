@@ -13,9 +13,11 @@ export class LotsService {
 
   LotUrl: string = this.auth.url + "lots";
   removeLotUrl: string = this.auth.url + "lots/removeLots/";
+  LotsByCountyUrl: string = this.auth.url + "lots/getLotsByCounty/";
   
   addCarParkLot(lot: Lots) {
     let jsonstr = JSON.stringify(lot);
+
     return this.http.post(this.LotUrl,jsonstr,this.auth.httpOptions);
   }
 
@@ -26,4 +28,9 @@ export class LotsService {
     let jsonstr = JSON.stringify(lot);
     return this.http.post(this.removeLotUrl,jsonstr,this.auth.httpOptions);
   }
+  getLotsByCounty(lot : Lots): Observable<Lots[]>{
+    let jsonstr = JSON.stringify(lot);
+
+    return this.http.post<Lots[]>(this.LotsByCountyUrl,jsonstr, this.auth.httpOptions);
+  }   
 }

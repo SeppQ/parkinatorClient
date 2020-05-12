@@ -33,7 +33,7 @@ export class AdminHomeComponent implements OnInit {
   allbookings : ParkedCars[];
   UserCount : number;
   BookingCount : number;
-  salesFromCurrentBookings : number;
+  salesFromCurrentBookings : number =0;
   zoneCount : number;
   ngOnInit() {
     this.getAllTicekts();
@@ -111,10 +111,13 @@ export class AdminHomeComponent implements OnInit {
   getAllZonesCount(){
     this.zoneCount = 0;
     this.zoneService.getAllZones().subscribe(data =>{
-      this.zone = data
+      this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
+      if(this.msg.status_code == 1){
+      this.zone = JSON.parse(this.msg.message);
       this.zone.forEach(element => {
         this.zoneCount ++;
       });
+    }
     })
   }
 }

@@ -20,7 +20,7 @@ export class AdminNewCcComponent implements OnInit {
 
   addNew(){
     this.udService.createCc(this.cc).subscribe();
-    //window.location.reload();
+    window.location.reload();
   }
 
   openNew(){

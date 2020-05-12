@@ -58,6 +58,7 @@ export class AdminCarDetailsComponent implements OnInit {
         }
       });
       this.cl.cars = this.newCars;
+      window.location.reload();
   }
 
 }

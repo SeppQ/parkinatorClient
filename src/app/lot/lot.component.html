@@ -4,33 +4,55 @@
     <div class="container-fluid ">
         <div class="col-xl-10 col-lg-3 col-md-8 ml-auto ">
             <div class="col-xl-7 col-6 mb-4 mb-xl-0">
-
+                
             </div>
         </div>
     </div>
     <br>
     <div class="container-fluid">
-        <div class="col-xl-10 col-lg-3 col-md-8 ml-auto">
+        <div class="col-xl-10 col-lg-6 col-md-8 ml-auto">
             <div class="row align-items-center">
-                <div id="back" class="col-xl-3 col-6 mb-4 mb-xl-0">
+                <div id="back" class="col-xl-3 col-6 rounded">
                     <br>
-                    <form class="form-signin text-white text-center" (submit)="addingLot($event)">
-                        <br>
-                        <h3>Register Car Park</h3>
+                    <div
+                        style="height:735px;width:100%;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                        <form class="form-signin text-white text-center" (submit)="addingLot($event)"
+                            #validation="ngForm">
+                            <br>
+                            <h3>Register Car Park</h3>
+                            
+                            <div class="input-group">
+                                <select class="form-control search-input " [(ngModel)]="countyName" name="countyName"
+                                    #name1="ngModel">
+                                    <option [ngValue]="undefined" hidden>--Choose County--</option>
+                                    <option *ngFor="let county of counties">{{county.countyName}}</option>
+                                </select>
+                            </div>
+                            <div *ngIf="name1.invalid && (name1.dirty || name1.touched)" class="alert alert-danger">
+                                <div *ngIf="name1.errors.required">
+                                    Lot Name is required.
+                                </div>
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <input type="text" class="form-control search-input" placeholder="Enter Lot Name"
+                                    [(ngModel)]="lotName" name="lotName" required #name0="ngModel">
+                            </div>
+                            <div *ngIf="name0.invalid && (name0.dirty || name0.touched)" class="alert alert-danger">
+                                <div *ngIf="name0.errors.required">
+                                    Lot Name is required.
+                                </div>
+                            </div>
+                            <br>
+                            <button [disabled]="!validation.valid" (click)="refresh()"
+                                class="btn btn-primary btn-block">Add</button>
+                        </form>
 
-                        <div class="input-group">
-                            <input type="text" class="form-control search-input" placeholder="Enter Lot Name"
-                                [(ngModel)]="lotName" name="lotName">
-                        </div>
-                        <br>
-                        <button (click)="refresh()" class="btn btn-primary btn-block">Add</button>
-                    </form>
-
-
+                    </div>
                 </div>
                 <div class="col-1">
                 </div>
-                <div id="back" class="col-xl-4 col-6 mb-4 mb-xl-0">
+                <div id="back" class="col-xl-4 col-6 rounded">
                     <br>
                     <h4 class="text-white">Parking Lots</h4>
                     <div class="input-group">
@@ -38,77 +60,86 @@
                             [(ngModel)]="lotSearchTerm" name="lotSearchTerm">
                     </div>
                     <br>
-                    <div *ngIf="lots!=[]">
-                        <div
-                        style="height:570px;width:500px;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                    <div
+                        style="height:640px;width:100%;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                        <div *ngIf="checkLotError" class="alert alert-danger">
+                            {{lotError}}
+                        </div>
+                        <div *ngIf="lots!=[]">
+                            
 
-                                <div *ngFor="let lot of lots | LotFilter:lotSearchTerm">
+                            <div *ngFor="let lot of lots | LotFilter:lotSearchTerm">
 
-                                    <div class="container-fluid bg-white rounded">
+                                <div class="container-fluid bg-white rounded">
 
-                                        <div class="row py-3 mb-4 task-border align-items-center">
-                                            <div class="col-sm-9 col-8">
-                                                <h4>{{lot.parking_name}}</h4>
-                                            </div>
-                                            <div class="col-1">
-                                                <a (click)="setId(lot.lot_id)" data-toggle="modal"
-                                                    data-target="#newCarModal" title="edit" data-html="true"
-                                                    data-placement="top"><i
-                                                        class="fas fa-edit fa-lg text-success mr-2 mouse"></i></a>
-                                            </div>
-                                            <div class="col-1">
-                                                <a (click)="removeLots(lot.lot_id)" data-toggle="tooltip" title="delete"
-                                                    data-html="true" data-placement="top"><i
-                                                        class="fas fa-trash-alt fa-lg text-danger mouse"></i></a>
-                                            </div>
+                                    <div class="row py-3 mb-4 task-border align-items-center">
+                                        <div class="col-sm-9 col-8">
+                                            <h4>{{lot.parking_name}}</h4>
+                                        </div>
+                                        <div class="col-1">
+                                            <a (click)="setId(lot.lot_id)" data-toggle="modal"
+                                                data-target="#newCarModal" title="edit" data-html="true"
+                                                data-placement="top"><i
+                                                    class="fas fa-edit fa-lg text-success mr-2 mouse"></i></a>
+                                        </div>
+                                        <div class="col-1">
+                                            <a (click)="removeLots(lot.lot_id)" data-toggle="tooltip" title="delete"
+                                                data-html="true" data-placement="top"><i
+                                                    class="fas fa-trash-alt fa-lg text-danger mouse"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div>
 
-                       
-                    
+                    </div>
                 </div>
-            </div>
-            <div id="back" class="col-xl-4 col-6 mb-4 mb-xl-0">
-                <br>
-                <h4 class="text-white">Parking Zones</h4>
-                <div class="input-group">
-                    <input type="text" class="form-control search-input" placeholder="Search Parking Zones"
-                        [(ngModel)]="searchTerm" name="searchTerm">
-                </div>
-                <br>
-                <div *ngIf="zone!=[]">
+                <div id="back" class="col-xl-4 col-6 rounded">
+                    <br>
+                    <h4 class="text-white">Parking Zones</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control search-input" placeholder="Search Parking Zones"
+                            [(ngModel)]="searchTerm" name="searchTerm">
+                    </div>
+                    <br>
                     <div
-                    style="height:570px;width:500px;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                        style="height:640px;width:100%;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                        <div *ngIf="checkZoneError" class="alert alert-danger">
+                            {{zoneError}}
+                        </div>
+                        <div *ngIf="zone!=[]">
 
-                        <div *ngFor="let zone of zone | zoneFilter:searchTerm">
-                            <div class="container-fluid bg-white rounded">
 
-                                <div class="row py-3 mb-4 task-border align-items-center">
-                                    <div class="col-sm-9 col-8">
-                                        <h4>{{zone.zone_name}}</h4>
-                                    </div>
-                                    <div class="col-1">
-                                        <a (click)="setZoneId(zone.zone_id)" data-toggle="tooltip" title="edit" data-toggle="modal"
-                                        data-target="#updateZone"
-                                            data-html="true" data-placement="top"><i
-                                                class="fas fa-edit fa-lg text-success mr-2 mouse"></i></a>
-                                    </div>
-                                    <div class="col-1">
-                                        <a (click)="removeZone(zone.zone_id)" data-toggle="tooltip" title="delete"
-                                            data-html="true" data-placement="top"><i
-                                                class="fas fa-trash-alt fa-lg text-danger mouse"></i></a>
+
+                            <div *ngFor="let zone of zone | zoneFilter:searchTerm">
+                                <div class="container-fluid bg-white rounded">
+
+                                    <div class="row py-3 mb-4 task-border align-items-center">
+                                        <div class="col-sm-9 col-8">
+                                            <h4>{{zone.zone_name}}</h4>
+                                        </div>
+                                        <div class="col-1">
+                                            <a (click)="setZoneId(zone.zone_id)" data-toggle="tooltip" title="edit"
+                                                data-toggle="modal" data-target="#updateZone" data-html="true"
+                                                data-placement="top"><i
+                                                    class="fas fa-edit fa-lg text-success mr-2 mouse"></i></a>
+                                        </div>
+                                        <div class="col-1">
+                                            <a (click)="removeZone(zone.zone_id)" data-toggle="tooltip" title="delete"
+                                                data-html="true" data-placement="top"><i
+                                                    class="fas fa-trash-alt fa-lg text-danger mouse"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
 
     </div>
     <div class="modal fade" id="newCarModal" role="dialog" aria-hidden="true">
@@ -130,10 +161,13 @@
                                 class="form-control ">
                             <input type="number" [(ngModel)]="maxDisabledSpaces" name="maxDisabledSpaces"
                                 placeholder="max disables spaces" class="form-control ">
+                            <input type="number" [(ngModel)]="price" name="price" placeholder="Price"
+                                class="form-control ">
 
 
-                            <agm-map (mapClick)="placeMarker($event)" [latitude]="latitude" [longitude]="longitude"
-                                [streetViewControl]="false" [mapTypeControl]="true" [fullscreenControl]="true">
+                            <agm-map (mapClick)="placeMarker($event)" [zoom]="1" [latitude]="latitude"
+                                [longitude]="longitude" [streetViewControl]="false" [mapTypeControl]="true"
+                                [fullscreenControl]="true">
                                 <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
                                 <agm-circle [latitude]="latitude" [longitude]="longitude" [zoom]="-10" [radius]="20"
                                     [fillOpacity]="0.50" [fillColor]="'#00A19A'"></agm-circle>
@@ -158,7 +192,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Update Zone Name</h5>
+                <h5 class="modal-title">Update Zone Price</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span area-hidden="true">&times;</span>
                 </button>
@@ -166,17 +200,16 @@
 
             <div class="modal-body">
                 <div class="card " style="width: 29rem;">
-                    <form class="form-signin" (submit)="updateZoneName($event)">
-                        <label>New Zone Name</label><br>
-                        <input type="text" class="form-control "  [(ngModel)]="newZoneName" name="newZoneName"><br>
+                    <form class="form-signin" (submit)="updateZonePrice($event)">
+                        <label>New Zone Price</label><br>
+                        <input type="number" class="form-control " [(ngModel)]="newPrice" name="newPrice"><br>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" (click)="refresh()" class="btn btn-secondary"
-                    data-dismiss="modal">Cancel</button>
+                <button type="button" (click)="refresh()" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 
             </div>
 

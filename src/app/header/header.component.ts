@@ -31,11 +31,12 @@ export class HeaderComponent implements OnInit {
     this.getImage();
 
     if (sessionStorage.getItem('loggedIn').toString() == 'true') {
-      if (sessionStorage.getItem('type') != "admin") {
+      if (sessionStorage.getItem('type') != "admin" && sessionStorage.getItem('type') != "clamping") {
         if (this.rout.url == "/admin-user-page" || this.rout.url == "/admin-car-page" || this.rout.url == "/admin-cc-page" || this.rout.url == "/lots") {
           this.rout.navigate(['/home'])
         }
       } 
+      
     } else {
       this.rout.navigate(['/'])
     }

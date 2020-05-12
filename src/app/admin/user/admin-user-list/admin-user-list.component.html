@@ -9,7 +9,9 @@
         <div *ngIf="errorMsg!=null">{{errorMsg}}</div>
         <ul class="">
             <div *ngIf="users!=[]">
-                <ng-container *ngFor='let u of users; let i = index; trackBy: trackByFn' >
+                <div
+                style="height:390px;width:100%;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                <ng-container *ngFor='let u of users | UserFilter:searchUsers; let i = index; trackBy: trackByFn' >
                     <li class='list-group-item list-group-item-action' 
                         
                         (click)='userSelected(u.user_id)' 
@@ -18,6 +20,7 @@
                         {{u.email}}
                     </li>
                 </ng-container>
+                </div>
             </div>
         </ul>
         <div class="card-footer">
