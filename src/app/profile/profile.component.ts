@@ -39,6 +39,11 @@ export class ProfileComponent implements OnInit {
     //this.image = sessionStorage.getItem("image")
     this.getImage()
   }
+  updateNotice(){
+    this.messageText = "To update Your details, please click on the update button.";
+      this.messageClass = "alert alert-warning";
+      this.message = true;
+  }
   update() {
     event.preventDefault()
     if (this.buttonName != "Save") {

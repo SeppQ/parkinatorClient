@@ -1,0 +1,25 @@
+<div id="" class="card bg-transparent">
+    <div class="card-header">
+        <h3 class="text-white p-4 rounded">Parking Lot List</h3>
+    </div>
+    
+ 
+    <div class="card-body list-group">
+        <div *ngIf="errorMsg!=null">{{errorMsg}}</div>
+        <ul class="">
+            <div *ngIf="cars!=[]">
+                <ng-container *ngFor='let l of lots; let i = index; trackBy: trackByFn' >
+                    <li class='list-group-item list-group-item-action' 
+                        
+                        (click)='lotSelected(l.lot_id)' 
+                        [class.active]='i==l.lot_id'> 
+                        
+                        {{l.parking_name}}
+                    </li>
+                </ng-container>
+            </div>
+        </ul>
+        <div class="card-footer">
+        </div>
+    </div>
+</div>

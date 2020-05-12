@@ -52,6 +52,12 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { SupportComponent } from './support/support.component';
 import { UserFilterPipe } from 'src/shared/user-filter.pipe';
 import { CcFilterPipe } from 'src/shared/cc-filter.pipe';
+import { RegularLotPageComponent } from './regular-lot-page/regular-lot-page.component';
+import { RegularLotLotlistComponent } from './regular-lot-lotlist/regular-lot-lotlist.component';
+import { RegularLotLotdetailsComponent } from './regular-lot-lotdetails/regular-lot-lotdetails.component';
+import { RegularLotZonelistComponent } from './regular-lot-zonelist/regular-lot-zonelist.component';
+import { RegularLotZonedetailsComponent } from './regular-lot-zonedetails/regular-lot-zonedetails.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,7 +103,12 @@ import { CcFilterPipe } from 'src/shared/cc-filter.pipe';
     UserFilterPipe,
     CcFilterPipe,
     AdminHomeComponent,
-    SupportComponent
+    SupportComponent,
+    RegularLotPageComponent,
+    RegularLotLotlistComponent,
+    RegularLotLotdetailsComponent,
+    RegularLotZonelistComponent,
+    RegularLotZonedetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -158,6 +169,11 @@ import { CcFilterPipe } from 'src/shared/cc-filter.pipe';
       {
         path: 'lots',
         component: LotComponent,
+        canActivate: [AuthenticationGuard]
+      } ,
+      {
+        path: 'userlots',
+        component: RegularLotPageComponent,
         canActivate: [AuthenticationGuard]
       } ,
       {
