@@ -57,6 +57,7 @@ import { RegularLotLotlistComponent } from './regular-lot-lotlist/regular-lot-lo
 import { RegularLotLotdetailsComponent } from './regular-lot-lotdetails/regular-lot-lotdetails.component';
 import { RegularLotZonelistComponent } from './regular-lot-zonelist/regular-lot-zonelist.component';
 import { RegularLotZonedetailsComponent } from './regular-lot-zonedetails/regular-lot-zonedetails.component';
+import { carMakeFilterPipe } from 'src/shared/carMake-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { RegularLotZonedetailsComponent } from './regular-lot-zonedetails/regula
     CarRegFilterPipe,
     UserFilterPipe,
     CcFilterPipe,
+    carMakeFilterPipe,
     AdminHomeComponent,
     SupportComponent,
     RegularLotPageComponent,

@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 export class AdminUserDetailsComponent implements OnInit {
 
   ngOnInit() {
-    this.user = new User (0,"","","","","","",false);
+    this.user = new User (0,"","","","","","",null);
   }
 
   @Input() user:User;
@@ -43,7 +43,9 @@ export class AdminUserDetailsComponent implements OnInit {
         }
       }
       //this signifies in the json string that the put should be used to update the user
-      this.udService.updateUser(this.user);
+      this.udService.updateUser(this.user).subscribe(data =>{
+        console.log(data);
+      });
     }
   }
 

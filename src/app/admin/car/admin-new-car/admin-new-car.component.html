@@ -39,7 +39,12 @@ Add Car<i class="fas fa-plus text-success"></i>
                 </div>
                 <div class="form-group">
                     <label>Car Make</label>
-                    <input required #make="ngModel" class="form-control" [(ngModel)]=car.car_make/>
+                    <input id="search" (clicl)="toggleDropdown()" required #make="ngModel" class="form-control" [(ngModel)]="searchTerm"/>
+                  <div  class="state-container-dropdown">
+                            <div (click)="selectValue(car.Make_Name)" *ngFor="let car of makes | carMakeFilter:searchTerm">
+                                {{car.Make_Name}}
+                            </div>
+                    </div>
                     <div *ngIf="make.invalid && (make.dirty || make.touched)" class="alert alert-danger">
                         <div *ngIf="make.errors.required">
                             Car Make is required.

@@ -12,11 +12,11 @@ export class UserDataService {
   constructor(private auth : AuthenticationService, private http: HttpClient) { }
 
   userUrl : string = this.auth.url + "user/";
-  userDeleteUrl : string = this.auth.url+"user/delete";
+  userDeleteUrl : string = this.auth.url+"Admin/";
 
   createUser(user : User) {
     let jsonstr = JSON.stringify(user);
-    console.log(jsonstr);
+
     return this.http.post<User>(this.userUrl,jsonstr,this.auth.httpOptions);
   }
   readUser(): Observable<User[]>{
@@ -24,7 +24,7 @@ export class UserDataService {
   }
   updateUser(user:User){
     let jsonstr = JSON.stringify(user);
-    console.log(jsonstr);
+
     return this.http.put(this.userUrl,jsonstr,this.auth.httpOptions);
   }
   deleteUser(userid: number){

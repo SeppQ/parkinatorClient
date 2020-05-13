@@ -10,6 +10,9 @@ import { ParkedCars } from 'src/app/DTO/ParkedCars';
 import { BookingsService } from 'src/app/services/bookings/bookings.service';
 import { ZoneService } from 'src/app/services/zone/zone.service';
 import { Zone } from 'src/app/DTO/Zone';
+import { VechilesService } from 'src/app/services/vechiles/vechiles.service';
+import { VehicleMake } from 'src/app/DTO/VehicleMake';
+import { MakeApiResponse } from 'src/app/DTO/MakeApiResponse';
 
 @Component({
   selector: 'app-admin-home',
@@ -18,7 +21,7 @@ import { Zone } from 'src/app/DTO/Zone';
 })
 export class AdminHomeComponent implements OnInit {
 
-  constructor(private suppService: SupportService , private paymentLogsService : PaymentLogsService , private userService : UserDataService,private bookings : BookingsService,private zoneService : ZoneService) { }
+  constructor(private suppService: SupportService , private paymentLogsService : PaymentLogsService , private userService : UserDataService,private bookings : BookingsService,private zoneService : ZoneService ) { }
   tickets: Support[];
   msg: ServerMsg;
   statusCode : string ;
@@ -35,6 +38,7 @@ export class AdminHomeComponent implements OnInit {
   BookingCount : number;
   salesFromCurrentBookings : number =0;
   zoneCount : number;
+
   ngOnInit() {
     this.getAllTicekts();
     this.getAllPaymentLogs();
@@ -42,6 +46,8 @@ export class AdminHomeComponent implements OnInit {
     this.getBookingCount();
     this.getSalesFromCurrentBookings();
     this.getAllZonesCount();
+
+
   }
   getAllTicekts() {
     this.suppService.getTicekts().subscribe(data => {

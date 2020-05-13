@@ -19,6 +19,7 @@ export class AuthenticationService {
       'Content-Type': 'text/plain'
     })
   };
+
   private loggedInStatus =  JSON.parse(localStorage.getItem('loggedIn') || 'false');
 
   setLoggedIn(value : boolean){
@@ -29,7 +30,7 @@ export class AuthenticationService {
   get isLoggedIn(){
     return JSON.parse(sessionStorage.getItem('loggedIn') || this.loggedInStatus.toString());
   }
-  url : string = "http://localhost:33986/parkinator/webresources/";
+  url : string = "http://localhost:8080/parkinator/webresources/";
   
 
 

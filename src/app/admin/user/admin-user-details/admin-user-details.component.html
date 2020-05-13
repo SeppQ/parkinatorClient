@@ -32,8 +32,14 @@
         </div>
         <div class="form-group">
             <label for="user_type">User Type:</label>
-            <input type="text" name="user_type" ngModel class="form-control" [value]="user.user_type"
-                [readonly]="notEditable">
+            <select  name="user_type" ngModel class="form-control" [value]="user.user_type" [readonly]="notEditable">
+                <option [value]="user.user_type" hidden>--{{user.user_type}}--</option>
+                <option >admin</option>
+                <option >regular</option>
+                <option >clamping</option>
+            </select>
+            <!--<input type="text" name="user_type" ngModel class="form-control" [value]="user.user_type"
+                [readonly]="notEditable">-->
         </div>
         <div class="form-group">
             <label for="question">Security Question:</label>
@@ -42,8 +48,13 @@
         </div>
         <div class="form-group">
             <label for="has_disabled_badge">Has A Disabled Badge:</label>
-            <input type="text" name="has_disabled_badge" ngModel class="form-control" [value]="user.has_disabled_badge"
-                [readonly]="notEditable">
+            <select  name="has_disabled_badge" ngModel class="form-control" [value]="user.has_disabled_badge" [readonly]="notEditable">
+                <option [value]="user.has_disabled_badge" hidden>--{{user.has_disabled_badge}}--</option>
+                <option [ngValue]="true">true</option>
+                <option [ngValue]="false">false</option>
+            </select>
+         <!--  <input type="text" name="has_disabled_badge" ngModel class="form-control" [value]="user.has_disabled_badge"
+                [readonly]="notEditable">--> 
         </div>
 
         <div class="col">
