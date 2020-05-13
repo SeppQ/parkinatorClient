@@ -28,6 +28,7 @@ export class CarDataService {
   }
 
   readCars() : Observable<Car[]>{
+    
     return this.http.get<Car[]>(this.url,this.auth.httpOptions);
   }
 
@@ -35,7 +36,7 @@ export class CarDataService {
   removeCar(car : Car)
   {
     let jsonStr = JSON.stringify(car);
-    console.log(jsonStr.toString());
+
     this.http.post(this.url+"/delete/", jsonStr, this.auth.httpOptions ).subscribe();
     
   }
@@ -43,8 +44,8 @@ export class CarDataService {
   updateCar(car : Car)
   {
     let jsonStr = JSON.stringify(car);
-    console.log(jsonStr.toString());
-    this.http.put(this.url, jsonStr, this.auth.httpOptions ).subscribe();
+    console.log(jsonStr);
+    return this.http.put(this.url, jsonStr, this.auth.httpOptions );
 
   }
 }

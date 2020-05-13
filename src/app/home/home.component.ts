@@ -243,8 +243,9 @@ export class HomeComponent implements OnInit {
       }
     });
     this.cars.forEach(element => {
-      if (element.car_reg == this.carRegId) {
+      if (element.alias == this.carRegId) {
         this.carId = element.car_id;
+        
       }
     });
 
@@ -252,9 +253,9 @@ export class HomeComponent implements OnInit {
     event.preventDefault;
     this.pc = (new ParkedCars(this.zoneId, this.carId, this.bookTo, this.bookTo, this.userDetails.user_id));
 
-
     this.bookingsService.checkBooking(this.pc).subscribe(data => {
       this.msg = <ServerMsg>JSON.parse(JSON.stringify(data));
+      
       if(this.msg.status_code == 1){
         this.checkBookingSuccess = this.msg.message;
         this.checkBookingError = null;
@@ -269,5 +270,7 @@ export class HomeComponent implements OnInit {
 
   dateChange(){
     this.fillout4 = false;
+
+    
   }
 }

@@ -37,10 +37,10 @@ Add Car<i class="fas fa-plus text-success"></i>
                         </div>
                     </div>  
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label>Car Make</label>
                     <input id="search" (clicl)="toggleDropdown()" required #make="ngModel" class="form-control" [(ngModel)]="searchTerm"/>
-                  <div  class="state-container-dropdown">
+                 <div  class="state-container-dropdown">
                             <div (click)="selectValue(car.Make_Name)" *ngFor="let car of makes | carMakeFilter:searchTerm">
                                 {{car.Make_Name}}
                             </div>
@@ -59,6 +59,25 @@ Add Car<i class="fas fa-plus text-success"></i>
                             Car Make is required.
                         </div>
                     </div>   
+                </div>--> 
+                <div class="form-group">
+                    <label for="car_details">Car Make:</label>
+                    <select name="car_make"  ngModel class="form-control" [(ngModel)]=car.car_make [readonly]="notEditable" (change)="getModelsById($event.target.value)">
+                        <option [value]="car.car_make" hidden>--{{car.car_make}}--</option>
+                        <option  *ngFor="let cMake of cMakes" [value]="cMake.car_make_name">
+                            {{cMake.car_make_name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="car_details">Car Model:</label>
+                    <select name="car_model" ngModel class="form-control" [(ngModel)]=car.car_model
+                        [readonly]="notEditable">
+                        <option [value]="car.car_model" hidden>--{{car.car_model}}--</option>
+                        <option *ngFor="let cModel of cModels" [value]="cModel.car_model_name">
+                            {{cModel.car_model_name}}
+                        </option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>User ID</label>

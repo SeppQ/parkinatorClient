@@ -10,14 +10,14 @@
         <ul class="">
             <div *ngIf="cars!=[]">
                 <div
-                style="height:350px;width:100%;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
+                style="height:470px;width:100%;border:1px solid transparent;font:16px Arial, Serif;overflow:auto;">
                 <ng-container *ngFor='let c of cars | carRegFilter:searchCars; let i = index; trackBy: trackByFn' >
                     <li class='list-group-item list-group-item-action' 
                         
                         (click)='carSelected(c.car_id)' 
                         [class.active]='i==c.car_id'> 
                         
-                        {{c.car_reg}}
+                        {{c.alias}}
                     </li>
                 </ng-container>
                 </div>

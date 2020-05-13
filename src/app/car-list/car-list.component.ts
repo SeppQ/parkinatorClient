@@ -27,8 +27,7 @@ export class CarListComponent implements OnInit {
   ngOnInit() {
     this.user = <User>JSON.parse(sessionStorage.getItem('userDetail'));
     this.cdService.getUserCars(this.user.user_id).subscribe( data => {
-      
-      console.log(data.toString());
+
       this.cars = data;
 
       this.cars.forEach(element => {

@@ -23,6 +23,10 @@
             <input type="text" name="car_id" ngModel class="form-control" [value]="car.car_id" [readonly]=true>
         </div>
         <div class="form-group">
+            <label for="alias">Car Alias :</label>
+            <input  type="text" class="form-control" ngModel name="alias" [value]="car.alias" [readonly]=notEditable/>
+        </div>  
+        <div class="form-group">
             <label for="car_reg">Car Registration:</label>
             <input type="text" name="car_reg" ngModel class="form-control" [value]="car.car_reg"
                 [readonly]="notEditable">
@@ -32,7 +36,7 @@
             <input type="text" name="car_colour" ngModel class="form-control" [value]="car.car_colour"
                 [readonly]="notEditable">
         </div>
-        <div class="form-group">
+       <!--   <div class="form-group">
             <label for="car_details">Car Make:</label>
             <input type="text" name="car_make" ngModel class="form-control" [value]="car.car_make"
                 [readonly]="notEditable">
@@ -41,6 +45,25 @@
             <label for="car_details">Car Model:</label>
             <input type="text" name="car_model" ngModel class="form-control" [value]="car.car_model"
                 [readonly]="notEditable">
+        </div>-->
+        <div class="form-group">
+            <label for="car_details">Car Make:</label>
+            <select name="car_make"  ngModel class="form-control" [value]="car.car_make" [disabled]="notEditable" (change)="getModelsById($event.target.value)">
+                <option [value]="car.car_make" hidden>--{{car.car_make}}--</option>
+                <option  *ngFor="let cMake of cMakes" [value]="cMake.car_make_name">
+                    {{cMake.car_make_name}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="car_details">Car Model:</label>
+            <select name="car_model" ngModel class="form-control" [value]="car.car_model"
+                [disabled]="notEditable">
+                <option [value]="car.car_model" hidden>--{{car.car_model}}--</option>
+                <option *ngFor="let cModel of cModels" [value]="cModel.car_model_name">
+                    {{cModel.car_model_name}}
+                </option>
+            </select>
         </div>
         <div class="form-group">
             <label for="user_id">User ID</label>
