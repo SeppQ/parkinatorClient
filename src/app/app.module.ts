@@ -57,6 +57,7 @@ import { RegularLotLotlistComponent } from './regular-lot-lotlist/regular-lot-lo
 import { RegularLotLotdetailsComponent } from './regular-lot-lotdetails/regular-lot-lotdetails.component';
 import { RegularLotZonelistComponent } from './regular-lot-zonelist/regular-lot-zonelist.component';
 import { RegularLotZonedetailsComponent } from './regular-lot-zonedetails/regular-lot-zonedetails.component';
+import { GmailtestComponent } from './gmailtest/gmailtest.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { RegularLotZonedetailsComponent } from './regular-lot-zonedetails/regula
     RegularLotLotlistComponent,
     RegularLotLotdetailsComponent,
     RegularLotZonelistComponent,
-    RegularLotZonedetailsComponent
+    RegularLotZonedetailsComponent,
+    GmailtestComponent
   ],
   imports: [
     BrowserModule,
@@ -185,6 +187,10 @@ import { RegularLotZonedetailsComponent } from './regular-lot-zonedetails/regula
         path: 'support',
         component: SupportComponent,
         canActivate: [AuthenticationGuard]
+      },
+      {
+        path: 'gmailtest',
+        component: GmailtestComponent
       },
       {
         path: 'admin-dashboard',

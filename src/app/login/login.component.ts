@@ -5,6 +5,8 @@ import { Login } from '../DTO/Login';
 import { LoginDataService } from 'src/app/services/login/login-data.service';
 import { UserDetailsDataService } from '../services/user/user-details-data.service';
 import { User } from '../DTO/User';
+import { GmailService } from '../services/gmail/gmail.service';
+import { GmailAccount } from '../DTO/GmailAccount';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,12 +22,14 @@ export class LoginComponent implements OnInit {
   hash : string;
   checkbox : boolean;
   user : User;
+  gmailAccount : GmailAccount = null;
   
   constructor(
     private auth :AuthenticationService, 
     private ldService : LoginDataService, 
     private uddService : UserDetailsDataService, 
-    private rout :Router
+    private rout :Router,
+    private gmService : GmailService
     ) { }
 
   ngOnInit() {
@@ -71,6 +75,11 @@ export class LoginComponent implements OnInit {
 
     }
       
+    loginWithGmail(){
+      this.gmService.getProfile().subscribe(data => {
+        this.gmailAccount = (data);
+      })
+    }
     
     
 

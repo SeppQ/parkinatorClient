@@ -1,3 +1,4 @@
+<body ng-app="myApp" ng-controller="myController ">
 <div id="bg2" class="justify-content-md-center text-center text-light  rounded">
     <div class="row justify-content-center pt-2">
         <form class="form-signin" (submit)="loginUser($event)" #validation="ngForm">
@@ -26,6 +27,11 @@
                 </label>
             </div>
             <input [disabled]="!validation.valid" class="btn btn-lg btn-primary btn-block " type="submit" value="Log In"><br>
+            <input  class="btn btn-lg btn-primary btn-block " type="button" (click)='loginWithGmail()' value="Login With Google"><br>
+            <div>{{GmailAccount.email}}</div>
+
+
+
             <a  routerLink="/register" routerLinkActive="active" type="submit">Sign up</a>&nbsp;&nbsp;
             <a  routerLink="/recovery" type="submit">Recover Password</a>
             <p class="mt-5 mb-3 text-muted">© 2020 - Parkinator</p>
@@ -39,3 +45,4 @@
 
     </div>
 </div>
+</body>
